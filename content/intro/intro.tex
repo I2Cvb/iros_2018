@@ -1,0 +1,93 @@
+% include the figures path relative to the master file
+\graphicspath{{./content/intro/figures/}}
+
+\section{Introduction}
+\label{sec:intro}
+
+%% Scattered sunlight, due to earth's atmosphere, produces a polarized skylight
+%% pattern that is symmetric about a line defined by the zenith and the current
+%% sun postion.  This pattern has been used as a aide skylight polarization has
+%% been used as a source of navigation
+
+Sun position, stars and sky patterns are hold as navigational cues for
+the past centuries. Indeed, before the discovery of magnetic compass,
+these natural cues were the solitary source of navigation used by our
+ancestors \cite{barta2005psychophysical, horvath2011trail}.  Skylight
+polarized pattern that is created due to scattered sunlight, is
+recognized as a navigation tool of some insects
+\cite{wehner03antnavigation, labhart202odometer}.  The studies show
+that some insects such as desert ants (cataglyphis), butterflies and
+dragonflies among others, are able to navigate through their paths,
+efficiently and robustly by using the polarized pattern of sky,
+despite their small brains \cite{labhart202odometer,
+  wehner03antnavigation, hamaoui2017polarized}.
+
+Acknowledging the nature, numerous studies have been conducted on
+polarized skylight pattern \cite{lambrinos2000insectnavigation,
+  chu2009application, zhao2009novel,
+  wang2015novel,chahl2013integration, ashkanazy2015bio,
+  sturzl2012fisheye, ma2015skylightpolarization,
+  miyazaki09sunlightpolarization, wang2014bionic,
+  lu2015angle,hamaoui2017polarized}.  These studies, often used the
+polarized pattern to create a sort of compass and estimate the solar
+azimuth angle and mainly have been shared in optic filed.  Estimating
+polarized patterns, however, have been a difficult and complex task.
+The primary studies report the use of several photodiodes
+\cite{lambrinos2000insectnavigation, chu2009application,
+  zhao2009novel, wang2015novel,chahl2013integration}, while later
+either multiple cameras \cite{ashkanazy2015bio, sturzl2012fisheye,
+  wang2014bionic} or manual rotating filter
+\cite{ma2015skylightpolarization, miyazaki09sunlightpolarization,
+  lu2015angle, hamaoui2017polarized} were used.  As a consequence of
+difficult and troublesome setups, exploiting the advantages of
+polarized patterns in our environment have been very limited. An
+example refers to the lack of using polarized sensors in \gls{uav}.
+
+However, recent introduction of \gls{dofp} micropolarizer cameras has offered
+an alternative solution \cite{nordin1999micropolarizer, nordin1999diffractive,
+  millerd2006pixelated}.  In such cameras a micropolarizer filter array,
+composed of a pixelated polarized filters oriented at different angles (see
+Fig.~\ref{fig:dofp-sensor}), is aligned with a detector array. Thus they can
+simultaneously acquire linear polarization information (i.e $S_0$, $S_1$,
+$S_2$) or full stokes parameters in one image capture.
+
+\begin{figure}
+  \centering
+  \includegraphics[width=0.4\textwidth]{./content/intro/figures/dofp-sensor-0-45-135-90.png}
+  \label{fig:dofp-sensor}
+  \caption{Structure of \gls{dofp} sensors}
+\end{figure}
+
+This study presents the primary results of using the polarization by scattering
+and Rayleigh model \textcolor{red}{(Rayleigh sky scattering} for attitude estimation.
+Polarization by scattering and Rayleigh model are explained in
+Sect.~\ref{sec:rayleigh} while our theoretical model is presented in
+Sect.~\ref{sec:attitude}.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+% Some stuff that emac's colegues use
+%%% Local Variables:
+%%% mode: late
+%%% TeX-master: "../../main.tex"
+%%% End: \section{introduction}

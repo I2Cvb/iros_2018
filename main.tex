@@ -1,0 +1,50 @@
+\documentclass[a4paper, 10 pt, conference]{latex/ieeeconf}  % Comment this line out if you need a4paper
+
+\IEEEoverridecommandlockouts                              % This command is only needed if
+                                                          % you want to use the \thanks command
+\overrideIEEEmargins                                      % Needed to meet printer requirements.
+
+
+\input{./latex/filesystem/ieee_packages.tex}  % contains the latex packages for IEEEtrans
+\input{./latex/filesystem/package.tex}        % contains the latex packages
+% \input{./latex/filesystem/package_edition.tex}% contains the latex packages
+% \usepackage[numbers]{natbib}
+\input{latex/filesystem/fileSetup.tex}        % contains package and variables init.
+\input{content/acronym_definition.tex}      % contains the acronims
+
+%% Include all macros below
+
+\newcommand{\lorem}{{\bf LOREM}}
+\newcommand{\ipsum}{{\bf IPSUM}}
+
+
+
+\input{content/frontmatter.tex}             % contains the Title and Autor info
+
+\begin{document}
+
+
+
+\maketitle
+\thispagestyle{empty}
+\pagestyle{empty}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{abstract}
+
+\end{abstract}
+
+
+\glsresetall % reset the acronyms from the abstract
+\include*{content/intro/intro}          % the file wihtout .tex
+\include*{content/intro/Rayleigh}
+%\include*{content/RW/background}
+
+
+\bibliographystyle{IEEEtranS}
+
+%\IEEEtriggeratref{17}
+\bibliography{content/bib/VIPeR-biblio}
+
+\end{document}

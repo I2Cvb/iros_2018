@@ -1,0 +1,53 @@
+\section{I dont know the tite exactly}
+\label{sec:rayleigh}
+
+The unpolarized sunlight passing through our atmosphere gets scattered by
+different particles within the atmosphere.  Beside deviating the direction of
+propagate wave, this transition also changes the polarization state of the
+incident light. This transition can be explained using Rayleigh scattering
+model.  Rayleigh scattering describes the scattering of light or any
+electromagnetic waves by particles much smaller than their transmission
+wavelength. Accordingly it assumes that scattering particles of the atmosphere
+are small, homogeneous particles much smaller than the wavelength of the
+sunlight.  Despite its simplification and assumption, this model proved to be
+sufficient for describing skylight scattering and polarization
+patterns~\cite{pomozi2001clearsky, horvath2002ground}.
+
+The Rayleigh model predicts that the unpolarized sunlight becomes linearly
+polarized passing through the atmosphere.
+Equation \ref{eq:1} shows the stokes vector for natural light after and before
+passing through the atmosphere, since the last stokes parameter is $0$ after
+scattering, the light is considered to be linearly polarized.
+\begin{equation}
+  \label{eq:1}
+  s_{unp} =
+  \begin{bmatrix}
+    1\\0\\0\\0
+  \end{bmatrix}
+  \xrightarrow[]{\text{scattering}}
+  s_{p}=
+  \begin{bmatrix}
+   s_0 \\ s_1 \\ s_2 \\ s_3
+ \end{bmatrix}
+\end{equation}
+
+Having the stokes parameters the \gls{dopl} ($\rho_{l}$) in terms of stokes
+parameters and the scattering angle ($\lambda$), respectively is presented as:
+\begin{equation}
+  \label{eq:2}
+  \rho_{l} = \frac{\sqrt{s_{1}^{2}+s_{2}^{2}}}{s_0} =
+  \frac{\sin^{2}(\lambda)}{\cos^{
+      2}(\lambda)+1}
+\end{equation}
+
+
+and the \gls{dopl}, $\rho_{l}$, varies
+from 0 to 1 depending on the scattering angle, $\lambda$, ($\rho_{l} = 0$ while
+$\lambda = 0, \pi$ and $\rho_{l} =1$ while $\lambda =
+\pi/2$)~\cite{smith2007polarization, miyazaki09sunlightpolarization}
+
+
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: t
+%%% End:

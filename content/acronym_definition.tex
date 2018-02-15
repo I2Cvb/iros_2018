@@ -1,0 +1,22 @@
+%!TEX root = ../main.tex
+
+%% Acronym definition example using glossaries package
+%% \usepackage{acro} cannot be used with IEEEtrans use Tobias Oetiker’s {acronym}
+%% The acronym environment will have a problem with IEEEtran because of the
+%% modified IEEE style description list environment. The optional argument of
+%% the acronym environment cannot be used to set the width of the longest label.
+%% A workaround is to use \IEEEiedlistdecl to accomplish the same thing:
+%%
+%% \renewcommand{\IEEEiedlistdecl}{\IEEEsetlabelwidth{S
+%% ONET}}
+%% \begin{acronym}
+%% .
+%% .
+%% \end{acronym}
+%% \renewcommand{\IEEEiedlistdecl}{\relax}% reset back
+
+\newacronym{psn}{PSN}{Polarized Skylight Navigation}
+\newacronym{gps}{GPS}{Global Positioning System}
+\newacronym{uav}{UAV}{Unmanned Aerial Vehicle}
+\newacronym{dofp}{DoFP}{division-of-focal-plane}
+\newacronym{dopl}{dopl}{degree of linear polarization}

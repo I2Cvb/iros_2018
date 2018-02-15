@@ -1,0 +1,82 @@
+%% \begin{landscape}
+%% \begin{table}
+%% \caption{Design summary of \gls{psn} developed sensors.}
+%% \resizebox{1.0\linewidth}{!}{
+%% \scriptsize{
+%%   \begin{tabular}{l c cccccc}
+%% \toprule
+%% %% Ref &  & \multicolumn{6}{c}{Camera} \\
+%% %% \cmidrule(l){3-8} 
+%% Ref &  Photodiodes  & Multiple-camera &  \multicolumn{4}{c}{Singular-camera} \\
+%% \cmidrule{4-8}
+%%   &  & \# camera & Rotating-Pol & SLM & DoFP & LFC \\
+%% \midrule
+%% Lambrions \textit{et al.}~\cite{lambrinos2000insectnavigation, lambrinos1997autonomous} & $\checkmark$ \\
+%% Chu \textit{et al.}~\cite{chu2009application,chu2008polarizationnavigation} & $\checkmark$\\
+%% Zhao \textit{et al,}~\cite{zhao2009novel} & $\checkmark$ \\
+%% Wang \textit{et al.}~\cite{wang2015novel} & $\checkmark$ \\
+%% %%Usher \textit{et al.}~\cite{usher01lightcompass} &  &  & $\checkmark$-manual\\
+%% Ashkanazy \textit{et al.}~\cite{ashkanazy2015bio} &  & 3  \\
+%% Chahl \textit{et al.}~\cite{chahl2013integration} & $\checkmark$ &    \\
+%% Sarkar \textit{et al.}~\cite{sarkar2010navigationpolarized} &  &  &  & &  $\checkmark$ \\
+%% Sturlz \textit{et al.}~\cite{sturzl2012fisheye} &  & 4 \\
+%% Ma \textit{et al.}~\cite{ma2015skylightpolarization} & &  & $\checkmark$ \\
+%% Miyazaki \textit{et al.}~\cite{miyazaki09sunlightpolarization}  & & & $\checkmark$ \\
+%% Wang \textit{et al.}~\cite{wang2014bionic} & & 3  \\
+%% Zhang \textit{et al.}~\cite{zhang2015sky} & & &  
+
+
+
+%% \bottomrule
+%% \end{tabular}}}
+%% \label{tab:survey-tab}
+%% \end{table}
+
+
+\begin{table*}
+\caption{Design summary of developed \gls{psn} sensors and systems.
+The current \gls{psn} systems are designed to act as polarized compass and provide the robot heading.}
+\resizebox{1.0\linewidth}{!}{
+\begin{threeparttable}
+\scriptsize{
+  \begin{tabular}{l c ccc c}
+\toprule
+%% Ref &  & \multicolumn{6}{c}{Camera} \\
+%% \cmidrule(l){3-8} 
+Ref &  Photodiodes  & \multicolumn{3}{c}{Camera} & Measurements \\
+\cmidrule{3-5}
+&  & Multiple(\#) &  & Singular & \\
+\midrule
+Lambrions \textit{et al.}~\cite{lambrinos2000insectnavigation, lambrinos1997autonomous} & $\checkmark$ & & & & 2D\tnote{1} \\
+Chu \textit{et al.}~\cite{chu2009application,chu2008polarizationnavigation} & $\checkmark$ & & & & 2D \\
+Zhao \textit{et al,}~\cite{zhao2009novel} & $\checkmark$ & & & & 2D \\
+Wang \textit{et al.}~\cite{wang2015novel} & $\checkmark$ & & & & longtitude \& lattitude\\
+%%Usher \textit{et al.}~\cite{usher01lightcompass} &  &  &  & manual-rotation\\
+Chahl \textit{et al.}~\cite{chahl2013integration} & $\checkmark$ & & & & 2D   \\
+Ashkanazy \textit{et al.}~\cite{ashkanazy2015bio} &  & 3  & & & 2D\\
+Sarkar \textit{et al.}~\cite{sarkar2010navigationpolarized} &  &  &  & DoFP\tnote{2} & - \\
+Sturlz \textit{et al.}~\cite{sturzl2012fisheye} &  & 4  & & & 3D\tnote{3}\\
+Ma \textit{et al.}~\cite{ma2015skylightpolarization} &  &  &  & manual-rotation & 2D \\
+Miyazaki \textit{et al.}~\cite{miyazaki09sunlightpolarization} &  &  & & manual-rotation & 2D  \\
+Wang \textit{et al.}~\cite{wang2014bionic} & & 3 & & & 2D  \\
+Zhang \textit{et al.}~\cite{zhang2015sky, zhang2016robust} & & & & LFC\tnote{4}& - \\
+Tang \textit{et al.}~\cite{tang2016novel} & & 3 &  & - \\
+Lu \textit{et al.}~\cite{lu2015angle} &  & & & auto-rotation & 2D \\
+Hamaoui~\cite{hamaoui2017polarized} & & & & manual-rotation & 3D \\
+
+\bottomrule
+\end{tabular}}
+\label{tab:survey-tab}
+\begin{tablenotes}
+\item[1] 2D measure refers to estimation of solar azimuth only. 
+\item[2] Division-of-focal-plane polarimeter (micropolarizer arrays).
+\item[3] 3D measure referes to estimation of solar azimuth and elevation (solar vector).
+\item[4] Light Field Camera (linear polarizer triplet).
+\end{tablenotes}
+\end{threeparttable}}
+\end{table*}
+
+
+
+
+%% \end{landscape}
