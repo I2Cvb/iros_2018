@@ -49,29 +49,33 @@ scattering, the light is considered to be linearly polarized.
 \end{equation}
 
 Having the stokes parameters the \gls{dopl} ($\rho_{l}$) in terms of stokes
-parameters and the scattering angle ($\lambda$), respectively is presented as:
+parameters and the scattering angle ($\gamma$), respectively is presented as:
 \begin{equation}
   \label{eq:2}
   \rho_{l} = \frac{\sqrt{s_{1}^{2}+s_{2}^{2}}}{s_0} =
-  \frac{\sin^{2}(\lambda)}{\cos^{
-      2}(\lambda)+1}
+  \frac{\sin^{2}(\gamma)}{\cos^{
+      2}(\gamma)+1}
 \end{equation}
-\noindent where scattering angle $\lambda$ is the angular distance between the
+\noindent where scattering angle $\gamma$ is the angular distance between the
 celestial point observed and the sun.
 According to Rayleigh model, the \gls{dopl}, $\rho_{l}$, varies
-from 0 to $\approx 1$ depending on the scattering angle, $\lambda$, ($\rho_{l} =
-0$ while $\lambda = 0, \pi$ and $\rho_{l} \approx 1$ while $\lambda =
+from 0 to $\approx 1$ depending on the scattering angle, $\gamma$, ($\rho_{l} =
+0$ while $\gamma = 0, \pi$ and $\rho_{l} \approx 1$ while $\gamma =
 \pi/2$)~\cite{smith2007polarization, miyazaki09sunlightpolarization}.
 Accounting for the approximation and polarization defect, Eq.~\ref{eq:2}
 is presented as~\cite{pomozi2001clearsky}:
 \begin{equation}
   \label{eq:3}
-  \rho_{l} = \rho_{l_{max}}\frac{1 - \cos^{2}(\lambda)}{1 + \cos^{
-      2}(\lambda)}
+  \rho_{l} = \rho_{l_{max}}\frac{1 - \cos^{2}(\gamma)}{1 + \cos^{
+      2}(\gamma)}
 \end{equation}
 
 
 \subsection{Polarization by scattering model for sky pattern}
+This section represent the relations between polarized measurements in pixel
+frame $\mathcal{P}$ and sun and celestial point in the world frame
+$\mathcal{W}$.
+
 Based on Rayleigh scattering the electric field of incident light after
 scattering is perpendicular to the scattering plane, that is defined by the
 observer, celestial point and the sun.
@@ -82,8 +86,85 @@ is represented by a sun vector $\vec{s}$ and celestial vector $\vec{c}$.
   \centering
   \includegraphics[width=0.5\textwidth]{./content/intro/figures/polasky4-crop.pdf}
   \label{fig:scattering}
-  \caption{Skylight polarization by scattering}
+  \caption{Skylight polarization by scattering\textcolor{red}{The figure needs
+      to be re-designed according the text}}
 \end{figure}
+Accordingly the normalized electric field vector $\vec{E}$ in the world frame
+is presented as the normalized cross product of $\vec{s}$ and
+$\vec{s}$ (see Eq.~\ref{Eq:E}).
+
+\begin{equation}
+\vec{E}=\frac{\vec{s}\wedge \vec{s}}{\left\Vert \vec{s}\wedge
+    \vec{c}\right\Vert }
+\label{Eq:E}
+\end{equation}
+
+However measuring the skylight polarization pattern and \gls{aop}, the electric
+field in the pixel frame $\mathcal{P}$ ($\widehat{obc}$) is represented as:
+\begin{equation}
+E_{obc}=\left[\begin{array}{l}
+E_{o}\\
+E_{b}\\
+0
+\end{array}\right]=\left[\begin{array}{l}
+\cos\alpha\\
+\sin\alpha\\
+0
+\end{array}\right]
+\label{Eq:Eproj}
+\end{equation}
+\noindent where $\alpha$ is the measured the angle of polarization.
+Combination of equation~(\ref{Eq:E}) and (\ref{Eq:Eproj}) and using the
+scattering angle $\gamma$, between $\vec{s}$ and $\vec{c}$ leads to:
+\begin{equation}
+\begin{cases}
+(s\wedge c)\cdot o & =\sin\gamma\cos\alpha\\
+(s\wedge c)\cdot b & =\sin\gamma\sin\alpha
+\end{cases},\label{eq:E0EB vect-1-1}
+\end{equation}
+
+\noindent applying vector triplet cross product rule on Eq.~\ref{eq:E0EB
+  vect-1-1} results.
+\begin{equation}
+\begin{cases}
+s\cdot b & =\sin\gamma\cos\alpha\\
+s\cdot o & =-\sin\gamma\sin\alpha
+\end{cases}\label{eq:scal-b-o}
+\end{equation}
+
+Considering the \gls{dopl} (see Eq.~\ref{Eq:3}), the scattering angle
+$\gamma$, therefore can be represented as:
+\begin{equation}
+\cos\gamma=s\cdot c=\pm\sqrt{\frac{1-\rho_{l}'}{1+\rho_{l}'}}
+\label{Eq:cosg}
+\end{equation}
+\noindent with $\rho_{l}'=\frac{\rho_{l}}{\rho_{l_{max}}}.$
+
+Equations~\ref{eq:scal-b-o} and \ref{Eq:cosg} finally leads to the sun vector
+in pixel frame $\mathcal{P}$ which express a direct relation between the
+measured polarization parameters (\gls{aop} ($\alpha$), \gls{dopl} ($\rho$)),
+scattering angle ($\gamma$), the sun position,  and the celestial point:
+\begin{equation}
+  \label{Eq:sunp}
+  \vec{s}_{\mathcal{P}} =
+  \left[
+    \begin{array}{l}
+    -\sin\gamma \sin\alpha\\
+    \sin\gamma \cos\alpha\\
+    \cos\gamma
+  \end{array}
+  \right]
+\end{equation}
+
+% \begin{equation}
+% R^{t}\cdot s=R_{cp}\left[\begin{array}{c}
+% -\sin\gamma\sin\alpha\\
+% \sin\gamma\cos\alpha\\
+% \cos\gamma
+% \end{array}\right]=v,\label{eq:qtrans}
+% \end{equation}
+% where $v$ is a vector obtained from polarization measurements according
+% to the selected pixel.
 
 
 
