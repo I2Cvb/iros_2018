@@ -1,0 +1,99 @@
+% include the figures path relative to the master file
+\graphicspath{{./content/intro/figures/}}
+
+\section{Introduction}
+\label{sec:intro}
+
+Adaptation of large-filed cameras and lenses such as omnidirectional and fisheye
+lenses are very popular in robotic application, simply due to the provided
+large field of view ($360$-degree) and extended amount of visual information.
+Due to these unique properties, these cameras are applicable in a wide range of
+robotics application, to name a few, visual
+odometry~\cite{scaramuzza2008appearance}, navigation~\cite{winters2000omni},
+\gls{slam}~\cite{kim2003slam}, and tracking~\cite{kobilarov2006people}.
+Although great amount of visual information can be extracted from an omnidirectional
+image, our attention in this article is on the segment that often is ignored or
+not used as navigational clue, sky.
+In outdoor application, sky region often covers
+a large segment of omnidirectional or fisheye images and contains
+information, which has not been exploited to their full extend yet.
+
+
+Sun position, stars and sky patterns are hold as navigational cues for
+the past centuries. Indeed, before the discovery of magnetic compass,
+these natural cues were the solitary source of navigation used by our
+ancestors \cite{barta2005psychophysical, horvath2011trail}.  Skylight
+polarized pattern that is created due to scattered sunlight, is
+recognized as a navigation tool of some insects
+\cite{wehner03antnavigation, labhart202odometer}.  The studies show
+that some insects such as desert ants (cataglyphis), butterflies and
+dragonflies among others, are able to navigate through their paths,
+efficiently and robustly by using the polarized pattern of sky,
+despite their small brains \cite{labhart202odometer,
+  wehner03antnavigation, hamaoui2017polarized}.
+
+
+Acknowledging the nature, numerous studies have been conducted on polarized
+skylight pattern \cite{lambrinos2000insectnavigation, chu2009application,
+  zhao2009novel, wang2015novel,chahl2013integration, ashkanazy2015bio,
+  sturzl2012fisheye, ma2015skylightpolarization,
+  miyazaki09sunlightpolarization, wang2014bionic,
+  lu2015angle,hamaoui2017polarized}.  These studies, often used the polarized
+pattern to create a sort of compass and estimate the solar azimuth angle and
+mainly have been shared in optic filed.  Estimating polarized patterns,
+however, have been a difficult and complex task.  The primary studies report
+the use of several photodiodes \cite{lambrinos2000insectnavigation,
+  chu2009application, zhao2009novel, wang2015novel,chahl2013integration}, while
+later either multiple cameras \cite{ashkanazy2015bio, sturzl2012fisheye,
+  wang2014bionic} or manual rotating filter \cite{ma2015skylightpolarization,
+  miyazaki09sunlightpolarization, lu2015angle, hamaoui2017polarized} were used.
+As a consequence of difficult and troublesome setups, exploiting the advantages
+of polarized patterns in our environment have been very limited. An example
+refers to the lack of using polarized sensors in \gls{uav}.  However, recent
+introduction of \gls{dofp} micropolarizer cameras has offered an alternative
+solution \cite{nordin1999micropolarizer, nordin1999diffractive,
+  millerd2006pixelated}.  In such cameras a micropolarizer filter array,
+composed of a pixelated polarized filters oriented at different angles, is
+aligned with a detector array. Thus they can simultaneously acquire linear
+polarization information (i.e $S_0$, $S_1$, $S_2$) or full stokes parameters in
+one image capture.
+Such a camera with a fisheye lens is used in this research to exploit the
+polarized information of sky region for attitude estimation.
+The used camera and their adaptation for robotics application
+is latter explained in Sect.~\ref{sec:p3}.
+
+In the remainder of this paper, Sect.~\ref{sec:p2} provides a brief
+introduction to polarization by scattering, Rayleigh model and explains how
+these information can be used for attitude estimation. Sect.~\ref{sec:p4}
+represents our model for attitude estimation. Experiments and implementation
+details are explained in Sect.~\ref{sec:p5}, and finally discussion and
+conclusion is presented in Sect.~\ref{sec:p6}.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+% Some stuff that emac's colegues use
+%%% Local Variables:
+%%% mode: late
+%%% TeX-master: "../../main.tex"
+%%% End: \section{introduction}

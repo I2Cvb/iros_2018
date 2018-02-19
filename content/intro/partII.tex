@@ -1,0 +1,105 @@
+% include the figures path relative to the master file
+\graphicspath{{./content/intro/figures/}}
+
+\section{Polarized cues used for attitude estimation}
+\label{sec:p2}
+
+% solar zenith: angle between the zenith and the center of the sun disk $\theta_s$
+% solar elevation: altitude of the sun, angle between the horizon and the
+% center of the sun disk $\alpha_s$
+% solar azimuth: direction of the sun $\phi_s$, while $\theta_s, \alpha_s$
+% define how high is the sun
+% scattering angle $\lambda$: angular distance between the observed celestial
+% point and the sun
+% solar meridian: plane containing the sun and the observer
+% Scattering plane: plane of observer,  celestial point observed and the sun
+% Rayleigh model- direction of polarization is perpendicular to the scattering
+% plane
+
+\subsection{Rayleigh scattering model}
+\label{subsec:p21}
+The unpolarized sunlight passing through our atmosphere gets scattered by
+different particles within the atmosphere.  Beside deviating the direction of
+propagate wave, this transition also changes the polarization state of the
+incident light. This transition can be explained using Rayleigh scattering
+model.  Rayleigh scattering describes the scattering of light or any
+electromagnetic waves by particles much smaller than their transmission
+wavelength. Accordingly it assumes that scattering particles of the atmosphere
+are small, homogeneous particles much smaller than the wavelength of the
+sunlight.  Despite its simplification and assumption, this model proved to be
+sufficient for describing skylight scattering and polarization
+patterns~\cite{pomozi2001clearsky, horvath2002ground}.
+
+The Rayleigh scattering model predicts that the unpolarized sunlight becomes
+linearly polarized passing through the atmosphere.
+Equation \ref{eq:1} shows the stokes vector for natural light after and before
+passing through the atmosphere, since the last stokes parameter is $0$ after
+scattering, the light is considered to be linearly polarized.
+\begin{equation}
+  \label{eq:1}
+  s_{unp} =
+  \begin{bmatrix}
+    1\\0\\0\\0
+  \end{bmatrix}
+  \xrightarrow[]{\text{scattering}}
+  s_{p}=
+  \begin{bmatrix}
+   s_0 \\ s_1 \\ s_2 \\ 0
+ \end{bmatrix}
+\end{equation}
+
+Having the stokes parameters the \gls{dopl} ($\rho_{l}$) in terms of stokes
+parameters and the scattering angle ($\lambda$), respectively is presented as:
+\begin{equation}
+  \label{eq:2}
+  \rho_{l} = \frac{\sqrt{s_{1}^{2}+s_{2}^{2}}}{s_0} =
+  \frac{\sin^{2}(\lambda)}{\cos^{
+      2}(\lambda)+1}
+\end{equation}
+\noindent where scattering angle $\lambda$ is the angular distance between the
+celestial point observed and the sun.
+According to Rayleigh model, the \gls{dopl}, $\rho_{l}$, varies
+from 0 to $\approx 1$ depending on the scattering angle, $\lambda$, ($\rho_{l} =
+0$ while $\lambda = 0, \pi$ and $\rho_{l} \approx 1$ while $\lambda =
+\pi/2$)~\cite{smith2007polarization, miyazaki09sunlightpolarization}.
+Accounting for the approximation and polarization defect, Eq.~\ref{eq:2}
+is presented as~\cite{pomozi2001clearsky}:
+\begin{equation}
+  \label{eq:3}
+  \rho_{l} = \rho_{l_{max}}\frac{1 - \cos^{2}(\lambda)}{1 + \cos^{
+      2}(\lambda)}
+\end{equation}
+
+
+\subsection{Polarization by scattering model for sky pattern}
+Based on Rayleigh scattering the electric field of incident light after
+scattering is perpendicular to the scattering plane, that is defined by the
+observer, celestial point and the sun.
+This plane is highlighted by light shade of red in Fig.~ref{fig:scattering} and
+is represented by a sun vector $\vec{s}$ and celestial vector $\vec{c}$.
+
+\begin{figure}
+  \centering
+  \includegraphics[width=0.5\textwidth]{./content/intro/figures/polasky4-crop.pdf}
+  \label{fig:scattering}
+  \caption{Skylight polarization by scattering}
+\end{figure}
+
+
+
+% \begin{itemize}
+% \item[] Scattering plane - is the plane defined by the observer, celestial point and
+%   the sun.
+% \item[] Meridional plane - is the plane defined by the local zenith and the
+%   celestial point
+
+% \item[] Solar meridional plane - is the plane defined by the sun and the observer
+% \item[] Scattering angle $\lambda$ is the angular distance between celestial point
+%   observed and the sun
+% \end{itemize}
+
+% Some stuff that emac's colegues use
+%%% Local Variables:
+%%% mode: late
+%%% TeX-master: "../../main.tex"
+%%% End: \section{Polarized cues used for attitude estimation}
