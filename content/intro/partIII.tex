@@ -2,15 +2,57 @@
 \graphicspath{{./content/intro/figures/}}
 
 \section{Setting the polarimetric camera for robotics}
-\label{sec:p3}
+\label{sec:rosify}
+As mentioned previously, in this work we use a \gls{dofp} polarimetric camera,
+to be exact \textit{IMPREX Bobcat GEV polarimetric camera}.
 
+This camera has the advantage to capture four different linearly polarized
+measure in one image, due to their micropolarizer and pixelated polarized
+filter array (see Fig.~\ref{fig:dofp-sensor}).
+Therefore each capture image leads to four linearly polarized sub-image $I_0$,
+$I_{45}$, $I_{135}$, $I_{90}$.
+Using these four measurements, the polarized state of the incident light is
+calculated in terms of stokes parameters~\cite{goldstein2017polarized}, which
+are used thereafter to calculate polarized parameters such as \gls{aop} and
+\gls{dopl} (see Eq.~\ref{eq:stokes}).
 
 \begin{figure}
   \centering
   \includegraphics[width=0.4\textwidth]{./content/intro/figures/dofp-sensor-0-45-135-90.png}
   \label{fig:dofp-sensor}
-  \caption{Structure of \gls{dofp} sensors}
+  \caption{Structure of \gls{dofp} sensors. Using this sensor four linearly
+    polarized image corresponding to the four orientation of the polarized
+    filters is acquired instantly}
 \end{figure}
+
+
+\begin{subequations}
+  \begin{align}
+    s_0 & = (I_0 + I_{45} + I_{135} + I_{90})/4\\ \nonumber
+    s_1 & = I_0 - I_{90} \\ \nonumber
+    s_2 & = I_{45} - I_{135} \nonumber
+  \end{align}
+  \begin{align}
+    \gls{aop} & = 0.5 \arctan(s_2/s_1) \\ \nonumber
+    \gls{dopl} & = \frac{\sqrt{s_2^{2} + s_1^{2}}}{s_0} \nonumber
+  \end{align}
+  \label{eq:stokes}
+\end{subequations}
+
+From the raw images ($640\times460$) captured by the camera, the sub-images can
+be extracted directly using super-pixel method that leads to four images, half
+of the size of the raw image, or can be interpolated to the full
+size~\cite{ratliff2009interpolationmicrogrid,gao2011bilinearpolarimeters}.
+
+The \textit{IMPREX Bobcat GEV} camera operates using eBus SDK-pleora driver and
+libraries~\cite{eBus}. To be able to use the camera integrated with other
+sensors, in the robotic field, we have created a ROS
+package, pleora-polarcam~\cite{pleora_polarcam}.
+Initiating from Iralab photonfocus driver~\cite{ira}, pleora-polarcam package
+is adapted for Imperex polarimetric cameras.
+Using this package the user can easily \text{roslaunch} or \text{rosrun} the
+camera and beside, buffering and saving the raw data, process the stokes and
+polarized parameters.
 
 
 
