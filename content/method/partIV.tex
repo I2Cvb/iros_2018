@@ -2,7 +2,122 @@
 \graphicspath{{./content/intro/figures/}}
 
 \section{Attitude estimation}
-\label{sec:attitude_estimate}
+\label{sec:g-abs-rel}
+This section explains how to estimate scattering angle ($\gamma$), absolute and
+relative rotation of the \gls{uav} in world frame ($R_{wv}$).
+
+\subsection{$\gamma$ estimation}
+\label{sec:gamma}
+Considering that we are only measuring the angle of polarization $\alpha$
+in scattering effects, we have to estimate $\gamma$ to get the vector
+$v$ defined in Eq.~\ref{eq:Rwv}. This equation is valid for all the points in
+sky region. However with only two celestial points, $\gamma$ can be estimated as
+expressed in the following.
+
+\begin{equation}
+\begin{cases}
+R^{t}\cdot s=R_{cp_{1}}\cdot\left[\begin{array}{c}
+-\sin\gamma_{1}\sin\alpha_{1}\\
+\sin\gamma_{1}\cos\alpha_{1}\\
+\cos\gamma_{1}
+\end{array}\right]\\
+R^{t}\cdot s=R_{cp_{2}}\cdot\left[\begin{array}{c}
+-\sin\gamma_{2}\sin\alpha_{2}\\
+\sin\gamma_{2}\cos\alpha_{2}\\
+\cos\gamma_{2}
+\end{array}\right]
+\end{cases}\label{eq:2setseq}
+\end{equation}
+\noindent The Eq.~\ref{eq:2setseq} can be rewritten according to:
+
+\begin{equation}
+\begin{split}
+  R_{cp_{1}}\cdot
+  \begin{bmatrix}
+\cos\alpha_{1} & -\sin\alpha_{1} & 0\\
+\sin\alpha_{1} & \cos\alpha_{1} & 0\\
+0 & 0 & 1
+\end{bmatrix}
+\begin{bmatrix}
+0\\
+\sin\gamma_{1}\\
+\cos\gamma_{1}
+\end{bmatrix}
+\\
+=R_{cp_{2}}\cdot
+\begin{bmatrix}
+\cos\alpha_{2} & -\sin\alpha_{2} & 0\\
+\sin\alpha_{2} & \cos\alpha_{2} & 0\\
+0 & 0 & 1
+\end{bmatrix}
+\begin{bmatrix}
+0\\
+\sin\gamma_{2}\\
+\cos\gamma_{2}
+\end{bmatrix}
+\end{split}
+\end{equation}
+
+leading to:
+\begin{equation}
+  M_{1}\cdot
+  \begin{bmatrix}
+0\\
+\sin\gamma_{1}\\
+\cos\gamma_{1}
+\end{bmatrix}
+=M_{2}\cdot
+\begin{bmatrix}
+0\\
+\sin\gamma_{2}\\
+\cos\gamma_{2}
+\end{bmatrix}
+\label{eq:2pts}
+\end{equation}
+
+\noindent By defining the matrix $M$ such
+that $M=M_{2}^{t}\cdot M_{1}$, $\gamma_1$ and $\gamma_2$ is found as:
+\begin{equation}
+\begin{cases}
+\gamma_{1}=-\arctan\frac{M_{02}}{M_{01}}\\
+\gamma_{2}=-\arctan\frac{M_{20}}{M_{10}}
+\end{cases}\label{eq:gamma-sol}
+\end{equation}
+
+The \gls{aop} is $2\pi$ modulus, while the $\gamma$ found in
+Eq.~\ref{eq:gamma-sol} is $\pi$ modulus, this leads to two possible solutions
+for vector $v$,
+$\left(\alpha_{1},\gamma_{1}\right)\,\text{and}\,\left(\alpha_{1}+\pi,-\gamma_{1}\right)$
+
+% The determination of vectors $v$ or $w$ impose to have $\alpha$
+% and $\gamma$ defined respectively $\pi$ and $2\pi$ modulus or defined
+% respectively $2\pi$ and $\pi$ modulus.
+
+% Without loss of generality,
+% it can be imposed that $\gamma$ (that represents the angle of scattering
+% or the angle of reflection) is determined in the range $[0,\pi]$
+% and $\alpha$ is determined in the range $[-\frac{\pi}{2},\frac{3\pi}{2}]$.
+% Consequently, eq(\ref{eq:2pts}) must be solved considering the four
+% possible cases :
+% \[
+% \left(\alpha_{1},\alpha_{2}\right),\,\left(\alpha_{1},\alpha_{2}+\pi\right),\,\left(\alpha_{1}+\pi,\alpha_{2}\right),\,\left(\alpha_{1}+\pi,\alpha_{2}+\pi\right).
+% \]
+% To compute $v$ or $w$, this can be reduced to two solutions:
+
+% \begin{equation}
+% \left(\alpha_{1},\gamma_{1}\right)\,\text{and}\,\left(\alpha_{1}+\pi,-\gamma_{1}\right).\label{eq:candidatesgamma}
+% \end{equation}
+
+
+
+
+\subsection{Absolute rotation}
+\label{sec:abs-rot}
+
+\subsection{Relative rotation}
+\label{sec:rel-rot}
+
+
 
 %%% Local Variables:
 %%% mode: latex

@@ -3,17 +3,6 @@
 
 \section{Setting the polarimetric camera for robotics}
 \label{sec:rosify}
-As mentioned previously, in this work we use a \gls{dofp} polarimetric camera,
-to be exact \textit{IMPREX Bobcat GEV polarimetric camera}.
-This camera has the advantage to capture four different linearly polarized
-measure in one image, due to their micropolarizer and pixelated polarized
-filter array (see Fig.~\ref{fig:dofp-sensor}).
-Therefore each capture image leads to four linearly polarized sub-image $I_0$,
-$I_{45}$, $I_{135}$, $I_{90}$.
-Using these four measurements, the polarized state of the incident light is
-calculated in terms of stokes parameters~\cite{goldstein2017polarized}, which
-are used thereafter to calculate polarized parameters such as \gls{aop} ($\alpha$) and
-\gls{dopl} ($\rho_l$) (see Eq.~\ref{eq:stokes}).
 
 \begin{figure}
   \centering
@@ -23,34 +12,6 @@ are used thereafter to calculate polarized parameters such as \gls{aop} ($\alpha
     polarized image corresponding to the four orientation of the polarized
     filters is acquired instantly}
 \end{figure}
-
-
-\begin{subequations}
-  \begin{align}
-    \label{eq:stokes1}
-    s_0 & = (I_0 + I_{45} + I_{135} + I_{90})/4\\ \nonumber
-    s_1 & = I_0 - I_{90} \\ \nonumber
-    s_2 & = I_{45} - I_{135} \nonumber
-  \end{align}
-  \begin{align}
-    \label{eq:stokes2}
-    \gls{aop} & = \alpha = 0.5 \arctan(s_2/s_1) \\ \nonumber
-    \gls{dopl} & = \rho_l = \frac{\sqrt{s_2^{2} + s_1^{2}}}{s_0} \nonumber
-  \end{align}
-  \label{eq:stokes}
-\end{subequations}
-
-From the raw images ($640\times460$) captured by the camera, the sub-images can
-be extracted directly using super-pixel method that leads to four images, half
-of the size of the raw image, or can be interpolated to the full
-size~\cite{ratliff2009interpolationmicrogrid,gao2011bilinearpolarimeters}.  The
-super-pixel method was used for the results presented in this paper. Being
-interested in large-field of view, a fisheye lens of 180-degree was used on the
-camera, \textcolor{red}{information of the lens}.
-
-An example of captured raw image, the linearly polarized
-images and subsequently the three stokes parameters and polarized information
-is shown in Fig.~\ref{fig:raw-sp}~$\&$~\ref{fig:stokes-aop-dop}.
 
 \begin{figure*}
   \centering
@@ -70,6 +31,48 @@ is shown in Fig.~\ref{fig:raw-sp}~$\&$~\ref{fig:stokes-aop-dop}.
 \end{figure*}
 
 
+As mentioned previously, in this work we use a \gls{dofp} polarimetric camera,
+to be exact \textit{IMPREX Bobcat GEV polarimetric camera}.
+This camera has the advantage to capture four different linearly polarized
+measure in one image, due to their micropolarizer and pixelated polarized
+filter array (see Fig.~\ref{fig:dofp-sensor}).
+Therefore each capture image leads to four linearly polarized sub-image $I_0$,
+$I_{45}$, $I_{135}$, $I_{90}$.
+Using these four measurements, the polarized state of the incident light is
+calculated in terms of stokes parameters~\cite{goldstein2017polarized}, which
+are used thereafter to calculate polarized parameters such as \gls{aop} and
+\gls{dopl} (see Eq.~\ref{eq:stokes}).
+
+
+
+\begin{subequations}
+  \begin{align}
+    \label{eq:stokes1}
+    \small
+    s_0 & = (I_0 + I_{45} + I_{135} + I_{90})/4\\ \nonumber
+    s_1 & = I_0 - I_{90} \\ \nonumber
+    s_2 & = I_{45} - I_{135} \nonumber
+  \end{align}
+  \begin{align}
+    \label{eq:stokes2}
+    \small
+    \gls{aop} & = \alpha = 0.5 \arctan(s_2/s_1) \\ \nonumber
+    \gls{dopl} & = \rho_l = \frac{\sqrt{s_2^{2} + s_1^{2}}}{s_0} \nonumber
+  \end{align}
+  \label{eq:stokes}
+\end{subequations}
+
+From the raw images ($640\times460$) captured by the camera, the sub-images can
+be extracted directly using super-pixel method that leads to four images, half
+of the size of the raw image, or can be interpolated to the full
+size~\cite{ratliff2009interpolationmicrogrid,gao2011bilinearpolarimeters}.  The
+super-pixel method was used for the results presented in this paper. Being
+interested in large-field of view, a fisheye lens of 180-degree was used on the
+camera, \textcolor{red}{information of the lens}.
+
+An example of captured raw image, the linearly polarized
+images and subsequently the three stokes parameters and polarized information
+is shown in Fig.~\ref{fig:raw-sp}~$\&$~\ref{fig:stokes-aop-dop}.
 
 The \textit{IMPREX Bobcat GEV} camera operates using eBus SDK-pleora driver and
 libraries~\cite{eBus}. To be able to use the camera integrated with other

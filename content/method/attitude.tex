@@ -52,7 +52,7 @@
 global frame $\mathcal{W}\rightarrow\mathcal{W}'$
 \item [{$R_{w'i}(t)$}] Ground Truth Rotation matrix provided by the IMU,
 $\mathcal{W}'\rightarrow\mathcal{I}$
-\item [{$R_{vi}$}] Rotation of the IMU in the vehicle frame, $\mathcal{V}\rightarrow\mathcal{I}$ 
+\item [{$R_{vi}$}] Rotation of the IMU in the vehicle frame, $\mathcal{V}\rightarrow\mathcal{I}$
 \item [{$R_{vc}$}] Rotation of the camera in the vehicle frame, $\mathcal{V}\rightarrow\mathcal{C}$
 \item [{$R_{cp}$}] Rotation matrix from the Camera Frame $\mathcal{C}$
 to the Pixel Frame $\mathcal{P}$
@@ -125,6 +125,7 @@ R(t) & =R_{wv}(t)\cdot R_{vc},\label{eq:R_definition}\\
 
 Using Rayleigh model, the Electric field is orthogonal to the scattering
 plane defined by vectors $s$ and $c$. Therefore the normalized Electric
+
 field vector $E$ is given by:
 \begin{equation}
 E=\frac{s\wedge c}{\left\Vert s\wedge c\right\Vert }\label{eq:E}
@@ -142,7 +143,7 @@ E_{b}\\
 0
 \end{array}\right]\label{eq:Eproj}
 \end{equation}
-where $\alpha$ is the measured the angle of polarisation. 
+where $\alpha$ is the measured the angle of polarisation.
 
 From equation~(\ref{eq:E}) and (\ref{eq:Eproj}) we can write:
 \begin{equation}
@@ -218,7 +219,7 @@ R^{t}\cdot s=R_{cp}\left[\begin{array}{c}
 \end{array}\right]=v,\label{eq:qtrans}
 \end{equation}
 where $v$ is a vector obtained from polarization measurements according
-to the selected pixel. 
+to the selected pixel.
 
 \section{Polarization by reflection with an horizontal surface}
 
@@ -354,7 +355,7 @@ To compute $v$ or $w$, this can be reduced to two solutions:
 \begin{equation}
 \left(\alpha_{1},\gamma_{1}\right)\,\text{and}\,\left(\alpha_{1}+\pi,-\gamma_{1}\right).\label{eq:candidatesgamma}
 \end{equation}
- 
+
 
 \section{Rotation estimation}
 
@@ -368,7 +369,7 @@ $v$ can be estimated satisfying:
 \begin{equation}
 s=R(t)\cdot v(t)\label{eq:sun_only}
 \end{equation}
- 
+
 \item From 2 measurements of the angle of polarization from reflection by
 horizontal surface (area of water), $w$ can be estimated satisfying:
 \begin{equation}
@@ -458,7 +459,7 @@ hand rule.
 In relation to a body the standard is:
 \begin{itemize}
 \item x Forward
-\item y Left 
+\item y Left
 \item z Up
 \end{itemize}
 For short-range Cartesian representations of geographic locations,
@@ -477,7 +478,7 @@ In the case of cameras, there is often a second frame defined with
 a \char`\"{}\_optical\char`\"{} suffix. This uses a slightly different
 convention:
 \begin{itemize}
-\item x Right 
+\item x Right
 \item y Down
 \item z Forward
 \end{itemize}
@@ -500,13 +501,13 @@ listed below, along with rationale.
 \item Compact representation
 \item No singularities
 \end{itemize}
-\item rotation matrix 
+\item rotation matrix
 \begin{itemize}
 \item No singularities
 \end{itemize}
 \item fixed axis roll, pitch, yaw about X, Y, Z axes respectively
 \begin{itemize}
-\item No ambiguity on order 
+\item No ambiguity on order
 \item Used for angular velocities
 \end{itemize}
 \item euler angles yaw, pitch, and roll about Z, Y, X axes respectively
@@ -532,7 +533,7 @@ before publishing standard ROS messages.
 
 Let be $K$ the calibration matrix of the camera:
 
-	
+
 \[
 K=\left(\begin{array}{ccc}
 \alpha_{x} & 0 & u_{0}\\
@@ -577,7 +578,7 @@ Computation of the 3D ray in the spherical coordinates gives:
 \[
 \phi=\arctan2\left(\frac{v-v_{0}}{\alpha_{y}},\,\frac{u-u_{0}}{\alpha_{x}}\right)
 \]
- and: 
+ and:
 
 \[
 \theta=\arccos\frac{Z}{\sqrt{X^{2}+Y^{2}+Z^{2}}}
