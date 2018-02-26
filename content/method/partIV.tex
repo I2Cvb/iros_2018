@@ -28,7 +28,7 @@ R^{t}\cdot s=R_{cp_{2}}\cdot\left[\begin{array}{c}
 \end{array}\right]
 \end{cases}\label{eq:2setseq}
 \end{equation}
-\noindent The Eq.~\ref{eq:2setseq} can be rewritten according to:
+\noindent The Eq.~\ref{eq:2setseq} is rewritten as:
 
 \begin{equation}
 \begin{split}
@@ -76,7 +76,7 @@ leading to:
 \end{equation}
 
 \noindent By defining the matrix $M$ such
-that $M=M_{2}^{t}\cdot M_{1}$, $\gamma_1$ and $\gamma_2$ is found as:
+that $M=M_{2}^{t}\cdot M_{1}$, $\gamma_1$ and $\gamma_2$ are found as:
 \begin{equation}
 \begin{cases}
 \gamma_{1}=-\arctan\frac{M_{02}}{M_{01}}\\
@@ -87,35 +87,77 @@ that $M=M_{2}^{t}\cdot M_{1}$, $\gamma_1$ and $\gamma_2$ is found as:
 The \gls{aop} is $2\pi$ modulus, while the $\gamma$ found in
 Eq.~\ref{eq:gamma-sol} is $\pi$ modulus, this leads to two possible solutions
 for vector $v$,
-$\left(\alpha_{1},\gamma_{1}\right)\,\text{and}\,\left(\alpha_{1}+\pi,-\gamma_{1}\right)$
-
-% The determination of vectors $v$ or $w$ impose to have $\alpha$
-% and $\gamma$ defined respectively $\pi$ and $2\pi$ modulus or defined
-% respectively $2\pi$ and $\pi$ modulus.
-
-% Without loss of generality,
-% it can be imposed that $\gamma$ (that represents the angle of scattering
-% or the angle of reflection) is determined in the range $[0,\pi]$
-% and $\alpha$ is determined in the range $[-\frac{\pi}{2},\frac{3\pi}{2}]$.
-% Consequently, eq(\ref{eq:2pts}) must be solved considering the four
-% possible cases :
-% \[
-% \left(\alpha_{1},\alpha_{2}\right),\,\left(\alpha_{1},\alpha_{2}+\pi\right),\,\left(\alpha_{1}+\pi,\alpha_{2}\right),\,\left(\alpha_{1}+\pi,\alpha_{2}+\pi\right).
-% \]
-% To compute $v$ or $w$, this can be reduced to two solutions:
-
-% \begin{equation}
-% \left(\alpha_{1},\gamma_{1}\right)\,\text{and}\,\left(\alpha_{1}+\pi,-\gamma_{1}\right).\label{eq:candidatesgamma}
-% \end{equation}
-
-
-
+$\left(\alpha_{1},\gamma_{1}\right)\,\text{and}\,\left(\alpha_{1}+\pi,-\gamma_{1}\right)$.
 
 \subsection{Absolute rotation}
 \label{sec:abs-rot}
+In order to estimate the absolute rotation and attitude of the \gls{uav}, it is
+assumed that: (i) the sun position is known, (ii) using the \gls{aop} measures
+of the sky (2 points), the vector $v$ is estimated, (iii) either using the \gls{aop}
+from horizontally reflected areas (i.e. water) a second vectors $w$ is
+estimated or the vertical in the pixel frame is known.
+In this study we assumed that the vertical in the pixel frame is known, however
+having any horizontal surface, the second vector can be estimated.
+
+The aforementioned assumptions leads to the following expression, where $z$ is
+the vertical in world frame ($[0, 0, 1]$) and $t$ is the time instance.
+\begin{equation}
+\begin{cases}
+\left[s,z,s\wedge z\right] & =R(t)\cdot\left[v(t),w(t),v(t)\wedge w(t)\right]\\
+ & =R_{wv}(t)\cdot R_{vc}\cdot\left[v(t),w(t),v(t)\wedge w(t)\right]
+\end{cases}
+\label{eq:linear_equation}
+\end{equation}
+
+Solving Eq.~\ref{eq:linear_equation} enables to get $R_{wv}(t)$. However due to
+$\gamma$ ambiguities, there exist two solutions for $v$ and therefore for
+$R_{wv}$.
+To constraint the solutions, at each time stamp, a closest solution compare to
+the previous time stamp is selected.
+
+
 
 \subsection{Relative rotation}
 \label{sec:rel-rot}
+
+The relative rotation is estimated between two different time stamps ($t_1$,
+$t_2$), Therefore Eq.~\ref{eq:linear_equation} becomes (For simplicity in the
+rest, $v(t_1)$ and $v(t_2)$ are referred as $v_1$ and $v_2$.):
+
+\begin{equation}
+\begin{cases}
+\left[s,z,s\wedge z\right] & =R_{wv1}\cdot R_{vc}\cdot\left[v_{1},w_{1},v_{1}\wedge w_{1}\right]\\
+\left[s,z,s\wedge z\right] & =R_{wv2}\cdot R_{vc}\cdot\left[v_{2},w_{2},v_{2}\wedge w_{2}\right]
+\end{cases}.
+\label{eq:rel-linear_equation}
+\end{equation}
+\noindent which leads to:
+\begin{equation}
+  \begin{split}
+R_{wv2}=R_{wv1}\cdot R_{vc}\cdot\left[v_{1},w_{1},v_{1}\wedge
+  w_{1}\right]\cdot \\
+\left[v_{2},w_{2},v_{2}\wedge w_{2}\right]^{-1} \cdot R_{vc}^{T}.
+\label{eq:relative_equation}\end{split}
+\end{equation}
+
+Using the above equation, the relative rotation $R_{v_{1}v_{2}}$ is equal to:
+%$=R_{wv1}^{T}\cdot R_{wv2}$ is therefore equal to:
+\begin{equation}
+\begin{split}
+  R_{v_{1}v_{2}} &= \\
+   & R_{vc}\cdot\left[v_{1},w_{1},v_{1}\wedge
+  w_{1}\right]\cdot\left[v_{2},w_{2},v_{2}\wedge w_{2}\right]^{-1}\cdot
+R_{vc}^{t}
+\end{split}
+\label{eq:final-relative}
+\end{equation}
+
+
+In this section we explained the basic theory of attitude estimation based on
+polarization by scattering.
+This theory, however needs to be tested which is explained in the next section.
+
+
 
 
 
