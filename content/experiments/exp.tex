@@ -2,37 +2,47 @@
 \graphicspath{{./content/experiments/figures/}}
 
 \section{Experiments and Results}
+\label{sec:exp-res}
 This section presents our setup, the designed experiments, the obtained
 results, the difficulties faced during the experiments and our provided
 solutions.
 
-\subsection{Setup}
-\label{sec:setup}
+% \subsection{Setup}
+% \label{sec:setup}
+
 The setup used in our experiment is based on fig.~\ref{fig:rotation}.
-%However instead of \gls{uav}, a camera tripod was used.
+However instead of \gls{uav}, a camera tripod was used (see
+Fig.~\ref{fig:setup}).
+
+\begin{figure}
+  \centering
+\includegraphics[width=0.33\textwidth]{./content/experiments/figures/setup.jpg}
+\caption{The setup used for acquiring presented datasets in this paper}
+\label{fig:setup}
+\end{figure}
+
 For the presented experiments, we considered that $R_{vi}$ between \gls{imu} and
 \gls{uav}, as well as initial pose of the \gls{uav} in the world frame were
 identity.  To be able to using the \gls{imu} recordings as \gls{gt}, this device was
 calibrated with the camera using kalibr toolbox~\cite{furgale2013unified,
   furgale2012continuous}. The polarimetric camera with fisheye lens was also
 calibrated according to~\cite{kannala2006generic}.
-
-Using the explained setup two dataset of synthetic and real images were
-created. The results obtained using these two dataset are presented in
-Exp.~\ref{exp1} and Exp.~\ref{exp2}, respectively.
-
-\subsection{Experiment~1}
-\label{exp1}
-This experiment is based on synthetic data. Indicating that \gls{aop} and
-\gls{dopl} images for sky regions were synthetically created using the \gls{imu}
-recordings obtained during real acquisition. Figure~\ref{fig:aop-dop-syn} shows
-an example of this dataset.
-
+Using the explained setup a dataset of synthetic images was
+created.
+% Using the explained setup two dataset of synthetic and real images were
+% created. The results obtained using these two dataset are presented in
+% Exp.~\ref{exp1} and Exp.~\ref{exp2}, respectively.
+Indicating that \gls{aop} and \gls{dopl} images for sky regions were
+synthetically created using the \gls{imu} recordings obtained during real
+acquisition. Figure~\ref{fig:aop-dop-syn} shows an example of this dataset at
+optimal conditions.
 \begin{figure}
     \centering
-    \subfigure[\gls{aop}]{\includegraphics[width= 0.22\textwidth]{./content/experiments/figures/aop-no-noise.png}}\hfill
+    \subfigure[\gls{aop}]{\includegraphics[width= 0.22\textwidth, height=0.12
+      \textheight]{./content/experiments/figures/aop-no-noise.png}}\hfill
     \label{fig:aop-syn}
-    \subfigure[\gls{dopl}]{\includegraphics[width=0.22\textwidth]{./content/experiments/figures/dop-no-noise.png}}
+    \subfigure[\gls{dopl}]{\includegraphics[width=0.22\textwidth, height=0.12
+      \textheight]{./content/experiments/figures/dop-no-noise.png}}
     \label{fig:dop-syn}
     \hspace*{\fill}
     \caption{Synthetically created \gls{aop} and \gls{dopl} images of sky
@@ -40,9 +50,95 @@ an example of this dataset.
     \label{fig:aop-dop-syn}
 \end{figure}
 
+Applying our framework on ideal synthetic data, perfect results were obtained
+for absolute and relative rotations, while $\gamma$ was estimated using only
+two random points from sky region (see Fig.~\ref{fig:res-syn-ideal-abs-rel}).
+As illustrated in Fig.~\ref{fig:res-ideal-syn-abs-rel}, the synthetic dataset,
+created based on \gls{imu} recordings, has rotation of roll, pitch and yaw,
+respectively. This dataset has 856 samples, however for simplicity, it has
+being down sampled by sampling rate of 30 samples.
 
-\subsection{Experiment~2}
-\label{exp2}
+\begin{figure}
+  \includegraphics[width=0.5\textwidth]{./content/experiments/figures/ideal-syn-abs-rel-2.png}
+  \caption{Absolute and relative rotation obtained from synthetic data in
+    optimal conditions. The black line represents the \gls{gt}, the
+    \textcolor{red}{dots} and the \textcolor{green}{stars} represent the
+    absolute and relative predicted rotations, respectively.}
+  \label{fig:res-syn-ideal-abs-rel}
+\end{figure}
+
+Although using our proposed framework we were able to achieve perfect results
+on ideal synthetic data, in reality it is rare to obtain the perfect skylight
+polarization pattern. Variety of causes clutter the desired skylight pattern,
+main one being pollution. To account for such cases, a second experiment was
+performed while significant level of noise was added to the created synthetic
+data.
+Figure~\ref{fig:aop-dop-syn-noisy} shows the an example of synthetic data with
+$\%10$ noise.
+
+\begin{figure}
+  \centering
+  \subfigure[\gls{aop}]{\includegraphics[width=0.22\textwidth,
+    height=0.12\textheight]{./content/experiments/figures/aop-noise-01-2.png}}\hfill
+  \label{fig:aop-noise-syn}
+  \subfigure[\gls{dopl}]{\includegraphics[width=0.22\textwidth,
+    height=0.12\textheight]{./content/experiments/figures/dop-noise-01-2.png}}
+  \hspace*{\fill}
+  \label{fig:dop-noise-syn}
+  \caption{Synthetically created \gls{aop} and \gls{dopl} images of sky
+      region with noise level of $0.1$. With yaw, pitch and roll angle of 1.8, -0.2 and 0.1, respectively.}
+  \label{fig:aop-dop-syn-noisy}
+\end{figure}
+
+Performing the same 2-random-point algorithm as before on noisy dataset leads
+to the results illustrated in Fig.~\ref{fig:res-noisy-syn-abs-rel}. As expected the
+performance decline, simply due to the noise.
+\begin{figure}
+  \includegraphics[width=0.5\textwidth]{./content/experiments/figures/noisy-syn-abs-rel-2.png}
+  \caption{Absolute and relative rotation obtained from synthetic data with
+    $10\%$ noise. The black line represents the \gls{gt}, the
+    \textcolor{red}{dots} and the \textcolor{green}{stars} represent the
+    absolute and relative predicted rotations, respectively.}
+  \label{fig:res-noisy-syn-abs-rel}
+\end{figure}
+
+To solve this problem, we defined two ransac models for the absolute and
+relative rotation, respectively.  In the proposed ransac model for absolute
+rotation, since the sun position is known the ransac model optimizes the full
+rotation of each frame in comparison to the origin considering the difference
+between the predicted and real sun positions.
+
+The relative model, however, there is no information about the original
+position, or sun position, and the algorithm only depends on the polarized
+vector, $v = R_{cp}*v_p$ between two different frames. Therefore using the ransac
+model, the optimal vector representing each frame is obtained.
+
+Running our ransac models on the noisy datasets, with error threshold of 0.07,
+10 random points (2 points for defining the model and the rest as test), and
+2000 iterations the following results are obtained:
+\begin{figure}
+  \centering
+  \includegraphics[width=0.5\textwidth]{./content/experiments/figures/noisy-ransac-abs-rel-2.png}
+  \caption{Absolute and relative rotation obtained from  noisy synthetic data
+    and ransac optimization. The black line represents the \gls{gt}, the
+    \textcolor{red}{dots} and the \textcolor{green}{stars} represent the
+    absolute and relative predicted rotations, respectively. The last graph
+    shows the difference between rotation matrices obtained from \gls{imu} and
+    predicted absolute and relative rotations respectively.}
+  \label{fig:res-noisy-syn-ransac-abs-rel}
+\end{figure}
+As illustrated in Fig.~\ref{fig:res-noisy-syn-ransac-abs-rel}, using the ransac
+model the outliers are ignored and satisfactory results are achieved.
+
+
+
+% Fig.~\ref{fig:res-syn-optimal}.
+% \begin{figure}
+%   \includegraphics[]{}
+%   \caption{}
+%   \label{}
+% \end{figure}
+
 
 
 

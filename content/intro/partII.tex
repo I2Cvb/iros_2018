@@ -51,7 +51,7 @@ after scattering, the light is considered to be linearly polarized.
 Having polarization state of light, the \gls{dopl} ($\rho_{l}$) can be
 calculated as presented in Eq.~\ref{eq:stokes2}. This measure is related to the
 scattering angle ($\gamma$) which is angular distance between the observed
-celestial point the sun (see Eq.~\ref{eq:2}).
+celestial point and the sun (see Eq.~\ref{eq:2}).
 
 \begin{equation}
   \label{eq:2}
@@ -86,10 +86,13 @@ celestial vectors, $\vec{s}$ and $\vec{c}$ respectively.
 
 \begin{figure}
   \centering
-  \includegraphics[width=0.4\textwidth]{./content/intro/figures/polasky4-crop.pdf}
-  \label{fig:scattering}
-  \caption{Skylight polarization by scattering\textcolor{red}{The figure needs
-      to be re-designed according the text, and the yellow color is not readable}}
+  \includegraphics[width=0.47\textwidth]{./content/intro/figures/polasky-iros-small.png}
+  \caption{Skylight polarization by scattering. Scattering plane is highlighted
+  by light shade of red. ($\theta_s$, $\phi_s$) and ($\theta_c$, $\phi_c$)
+  define the zenith and azimuth angle of sun and celestial point
+  respectively. $\widehat{obc}$ defines the pixel frame, $\mathcal{P}$, and
+  $\vec{E}$ is the electrical field orthogonal to the scattering plane.}
+    \label{fig:scattering}
 \end{figure}
 Accordingly the normalized electric field vector $\vec{E}$ in the world frame
 is presented as the normalized cross product of $\vec{s}$ and
@@ -136,7 +139,6 @@ s\cdot o & =-\sin\gamma\sin\alpha
 \end{cases}
 \label{eq:scal-b-o}
 \end{equation}
-
 Using Eq.~\ref{eq:3}, the scattering angle $\gamma$, therefore can be
 represented as:
 \begin{equation}
@@ -163,18 +165,18 @@ scattering angle, the sun position,  and the celestial point:
 
 \subsection{UAV attitude and polarized sky pattern}
 \label{subsec:ps-attitude}
-This section presents how the information presented so far can be used for
-attitude estimation of a \gls{uav}.
+This section presents how the information so far presented can be used for
+attitude estimation of an \gls{uav}.
 The overview of the considered scenario, the frame conventions and rotations
 for an \gls{uav} is shown in Fig.~\ref{fig:rotation}.
 
 \begin{figure}[h]
   \centering
   \includegraphics[width=0.5\textwidth]{./content/intro/figures/conventions.pdf}
-  \label{fig:rotation}
   \caption{Frame conventions and rotations for attitude estimation of an
     \gls{uav}- \textcolor{red}{-the figure needs to be changed pixel frame
-    should be added, some parts can be removed.}}
+      should be added, some parts can be removed.}}
+  \label{fig:rotation}
 \end{figure}
 In Fig.~\ref{fig:rotation} the $\mathcal{W}, \mathcal{W'}, \mathcal{I},
 \mathcal{V}, \mathcal{C},$ and $\mathcal{P}$, present the world frame, global

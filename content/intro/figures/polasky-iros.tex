@@ -1,0 +1,71 @@
+\documentclass[10pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage{pgf,tikz}
+\usepackage{mathrsfs}
+\usetikzlibrary{arrows}
+\pagestyle{empty}
+\begin{document}
+\definecolor{uququq}{rgb}{0.25098039215686274,0.25098039215686274,0.25098039215686274}
+\definecolor{ttzzqq}{rgb}{0.2,0.6,0.}
+\definecolor{ttttff}{rgb}{0.2,0.2,1.}
+\definecolor{ffzzqq}{rgb}{1.,0.6,0.}
+\definecolor{ffqqqq}{rgb}{1.,0.,0.}
+\definecolor{ffqqff}{rgb}{1.,0.,1.}
+\definecolor{qqqqzz}{rgb}{0.,0.,0.6}
+\definecolor{ffccqq}{rgb}{1.,0.8,0.}
+\definecolor{qqqqqe}{rgb}{0.,0.,0.054901960784313725}
+\begin{tikzpicture}[line cap=round,line join=round,>=triangle 45,x=4.0cm,y=4.0cm]
+\clip(-1.2332756948046604,-0.8460559244452401) rectangle (1.5480681170246948,1.0043540677707803);
+% scattering
+\draw [shift={(0.,0.)},color=ffqqff]  plot[domain=3.875741405085372:5.186753142394398,variable=\t]({-0.9996049783320258*1.*cos(\t r)+-0.028104933620810218*0.40296011089319744*sin(\t r)},{0.028104933620810218*1.*cos(\t r)+-0.9996049783320258*0.40296011089319744*sin(\t r)});
+\draw [shift={(0.,0.)},line width=1.6pt]  plot[domain=-3.141592653589793:0.,variable=\t]({1.*1.*cos(\t r)+0.*0.4848096202463366*sin(\t r)},{0.*1.*cos(\t r)+1.*0.4848096202463366*sin(\t r)});
+\draw [shift={(0.,0.)},line width=1.6pt,dotted]  plot[domain=0.:3.141592653589793,variable=\t]({1.*1.*cos(\t r)+0.*0.4848096202463366*sin(\t r)},{0.*1.*cos(\t r)+1.*0.4848096202463366*sin(\t r)});
+\draw [shift={(0.,0.)},line width=1.6pt]  plot[domain=0.:3.141592653589793,variable=\t]({1.*1.*cos(\t r)+0.*1.*sin(\t r)},{0.*1.*cos(\t r)+1.*1.*sin(\t r)});
+
+\draw [shift={(0.,0.)},line width=1.2pt,dash pattern=on 1pt off 1pt,color=qqqqzz]  plot[domain=3.860207225507554:4.401259293625796,variable=\t]({-0.6583424667201468*1.*cos(\t r)+-0.7527185373782369*0.7649596321166023*sin(\t r)},{0.7527185373782369*1.*cos(\t r)+-0.6583424667201468*0.7649596321166023*sin(\t r)});
+\draw [->,color=ffqqqq] (0.7496954135095477,0.24899353254882683) -- (0.7609643009775211,0.6497927717581605);
+\draw [shift={(0.,0.)},line width=1.2pt,color=ffzzqq]  plot[domain=3.141592653589793:5.3387782990391575,variable=\t]({-0.37681713422872265*1.*cos(\t r)+0.926287669869168*0.5621947109368735*sin(\t r)},{-0.926287669869168*1.*cos(\t r)+-0.37681713422872265*0.5621947109368735*sin(\t r)});
+\draw [line width=1.2pt,dash pattern=on 1pt off 1pt,color=ffzzqq] (-0.6427876096865394,-0.3713857155603282)-- (0.6427876096865394,0.3713857155603282);
+\draw [shift={(0.,0.)},line width=1.2pt,dotted,color=ffzzqq]  plot[domain=2.1971856454493643:4.535926843121766,variable=\t]({-0.37681713422872265*1.*cos(\t r)+0.926287669869168*0.5621947109368735*sin(\t r)},{-0.926287669869168*1.*cos(\t r)+-0.37681713422872265*0.5621947109368735*sin(\t r)});
+\draw [shift={(0.,0.)},line width=1.2pt,color=ttttff]  plot[domain=0.7186145719177588:3.141592653589793,variable=\t]({0.658342466720148*1.*cos(\t r)+0.752718537378236*0.7649596321166027*sin(\t r)},{-0.752718537378236*1.*cos(\t r)+0.658342466720148*0.7649596321166027*sin(\t r)});
+\draw [line width=1.2pt,dash pattern=on 1pt off 1pt,color=qqqqzz] (-0.8746197071393957,0.2350403678833974)-- (0.8746197071393957,-0.2350403678833974);
+\draw [shift={(0.,0.)},line width=1.2pt,dotted,color=qqqqzz]  plot[domain=1.2596666400360021:3.860207225507552,variable=\t]({0.658342466720148*1.*cos(\t r)+0.752718537378236*0.7649596321166027*sin(\t r)},{-0.752718537378236*1.*cos(\t r)+0.658342466720148*0.7649596321166027*sin(\t r)});
+\draw [->,color=ttzzqq] (0.7496954135095477,0.24899353254882683) -- (1.234505033755885,0.6730175806270395);
+\draw [->,color=ttzzqq] (0.7496954135095477,0.24899353254882683) -- (1.2001578637530177,-0.6217566195615372);
+\draw [->,color=ttzzqq] (0.7496954135095477,0.24899353254882683) -- (1.4993908270190954,0.49798706509765367);
+\draw [color=ttttff] (0.,0.)-- (0.7496954135095477,0.24899353254882683);
+\draw [->] (0.,0.) -- (-1.,0.);
+\draw [->] (0.,0.) -- (0.,-0.48480962024633667);
+\draw [->] (0.,0.) -- (0.,0.874619707139396);
+\draw [shift={(0.,0.)},color=qqqqzz]  plot[domain=3.141592653589793:5.777039824101231,variable=\t]({1.*0.8571673007021122*cos(\t r)+0.*0.4155629535409687*sin(\t r)},{0.*0.8571673007021122*cos(\t r)+1.*0.4155629535409687*sin(\t r)});
+\draw [shift={(0.,0.)},color=ffzzqq]  plot[domain=3.141592653589793:4.014257279586958,variable=\t]({1.*0.6946583704589974*cos(\t r)+0.*0.33677706078316544*sin(\t r)},{0.*0.6946583704589974*cos(\t r)+1.*0.33677706078316544*sin(\t r)});
+\draw [dotted,color=ffccqq] (-0.4465177934960854,0.3711625695230165)-- (-0.4465177934960854,-0.2579861959828862);
+\draw [dotted,color=ttttff] (0.7496954135095477,0.24899353254882683)-- (0.7496954135095477,-0.2014689176946432);
+\draw [shift={(0.,0.)},color=ffccqq]  plot[domain=0.6263893186544663:1.3943341895319712,variable=\t]({0.3768171342287221*0.6*cos(\t r)+-0.9262876698691684*0.33731682656212386*sin(\t r)},{0.9262876698691684*0.6*cos(\t r)+0.3768171342287221*0.33731682656212386*sin(\t r)});
+\draw [shift={(0.,0.)},color=ttttff]  plot[domain=1.2596666400360017:2.2894108987126573,variable=\t]({0.6583424667201472*0.6*cos(\t r)+0.7527185373782367*0.45897577926996147*sin(\t r)},{-0.7527185373782367*0.6*cos(\t r)+0.6583424667201472*0.45897577926996147*sin(\t r)});
+\draw [->,color=ffzzqq] (0.,0.) -- (-0.4465177934960854,0.3711625695230165);
+%\begin{scriptsize}
+\draw [fill=qqqqqe] (0.,0.) circle (1.5pt);
+\draw[color=qqqqqe] (0.02133665285883871,0.04047951300190896) node {$O$};
+\draw [fill=ffccqq] (-0.4465177934960854,0.3711625695230165) circle (3.5pt);
+\draw[color=ffccqq] (-0.44556246282415296,0.45868362888974024) node {\color{black}$Sun$};
+\draw [fill=qqqqzz] (0.7496954135095477,0.24899353254882683) circle (2.5pt);
+\draw[color=qqqqzz] (0.7059310617437161,0.26676804146176286) node {$C$};
+\draw[color=ffqqqq] (0.8119142965920025,0.4758700994056785) node {$\vec E$};
+\draw[color=ttzzqq] (1.0525248838151393,0.4930565699216168) node {$\vec b$};
+\draw[color=ttzzqq] (1.0525248838151393,-0.15716489793138114) node {$\vec o$};
+\draw[color=ttzzqq] (1.1900166479426462,0.4099886290945818) node {$\vec c$};
+\draw [fill=uququq] (-1.,0.) circle (1.5pt);
+\draw[color=uququq] (-0.9210548137651138,0.04047951300190896) node {$\vec{x}$};
+\draw[color=qqqqzz] (-0.1576890816821857,-0.3533771029883431) node {$\phi_c$};
+\draw[color=ffzzqq] (-0.5730287858173623,-0.09271563349661263) node {\color{black} $\phi_s$};
+\draw [fill=uququq] (0.,-0.48480962024633667) circle (1.5pt);
+\draw[color=uququq] (0.08148929966462291,-0.443606073197019) node {$\vec y$};
+\draw [fill=uququq] (0.,0.874619707139396) circle (1.5pt);
+\draw[color=uququq] (0.08148929966462291,0.9169895093147608) node {$\vec z$};
+\draw[color=ffccqq] (-0.0688923173498376,0.45438701126075565) node {\color{black} $\theta_s$};
+\draw[color=ttttff] (0.3321253280220571,0.4372005407448174) node {$\theta_c$};
+\draw[color=ffzzqq] (-0.20495187560101616,0.20375098290332255) node {\color{black}$s$};
+%\end{scriptsize}
+\end{tikzpicture}
+\end{document}
