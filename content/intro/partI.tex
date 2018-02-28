@@ -4,68 +4,77 @@
 \section{Introduction}
 \label{sec:intro}
 
-Adaptation of large-filed cameras and lenses such as omnidirectional and fisheye
-lenses are very popular in robotic application, simply due to the provided
-large field of view ($360$-degree) and extended amount of visual information.
-Due to these unique properties, these cameras are applicable in a wide range of
-robotics application, to name a few, visual
-odometry~\cite{scaramuzza2008appearance}, navigation~\cite{winters2000omni},
-\gls{slam}~\cite{kim2003slam}, and tracking~\cite{kobilarov2006people}.
-Although great amount of visual information can be extracted from an omnidirectional
-image, our attention in this article is on the segment that often is ignored or
-not used as navigational clue, sky.
-In outdoor application, sky region often covers
-a large segment of omnidirectional or fisheye images and contains
-information, which has not been exploited to their full extend yet.
+Large-field cameras and lenses (e.g. omnidirectional and fisheye cameras) are
+popular in robotic applications due to their ability to provide large field of
+view (up to \ang{360}), extending the amount of visual information. It is the
+main reason for which they have been adopted for a broad range of tasks such as
+visual odometry~\cite{scaramuzza2008appearance},
+navigation~\cite{winters2000omni}, \gls{slam}~\cite{kim2003slam}, and
+tracking~\cite{kobilarov2006people}. With those systems, sky regions in the
+images acquired represent a large segment of information which are usually
+discarded. Here, we show that polarimetric information can be extracted from
+those regions and used in robotic applications.
 
+% Adaptation of large-filed cameras and lenses such as omnidirectional and fisheye
+% lenses are very popular in robotic application, simply due to the provided
+% large field of view ($360$-degree) and extended amount of visual information.
+% Due to these unique properties, these cameras are applicable in a wide range of
+% robotics application, to name a few, visual
+% odometry~\cite{scaramuzza2008appearance}, navigation~\cite{winters2000omni},
+% \gls{slam}~\cite{kim2003slam}, and tracking~\cite{kobilarov2006people}.
+% Although great amount of visual information can be extracted from an omnidirectional
+% image, our attention in this article is on the segment that often is ignored or
+% not used as navigational clue, sky.
+% In outdoor application, sky region often covers
+% a large segment of omnidirectional or fisheye images and contains
+% information, which has not been exploited to their full extend yet.
 
-Sun position, stars and sky patterns are hold as navigational cues for
-the past centuries. Indeed, before the discovery of magnetic compass,
-these natural cues were the solitary source of navigation used by our
-ancestors \cite{barta2005psychophysical, horvath2011trail}.  Skylight
-polarized pattern that is created due to scattered sunlight, is
-recognized as a navigation tool of some insects
-\cite{wehner03antnavigation, labhart202odometer}.  The studies show
-that some insects such as desert ants (cataglyphis), butterflies and
-dragonflies among others, are able to navigate through their paths,
-efficiently and robustly by using the polarized pattern of sky,
-despite their small brains \cite{labhart202odometer,
-  wehner03antnavigation, hamaoui2017polarized}.
-
+Sun position, stars and sky patterns are hold as navigational cues for the past
+centuries. Indeed, before the discovery of magnetic compass, these natural cues
+have been the solitary source of navigation used by our
+ancestors~\cite{barta2005psychophysical,horvath2011trail}. Similarly, some
+insects used the skylight polarized pattern created by the scattered sunlight
+to navigate in their
+environment~\cite{wehner03antnavigation,labhart202odometer}. For instance,
+desert ants (cataglyphis), butterflies and dragonflies among others, are able
+to navigate through their paths, efficiently and robustly by using the
+polarized pattern of sky, despite their small
+brains~\cite{labhart202odometer,wehner03antnavigation,hamaoui2017polarized}.
 
 Acknowledging the nature, numerous studies have been conducted on polarized
-skylight pattern \cite{lambrinos2000insectnavigation, chu2009application,
+skylight pattern~\cite{lambrinos2000insectnavigation, chu2009application,
   zhao2009novel, wang2015novel,chahl2013integration, ashkanazy2015bio,
   sturzl2012fisheye, ma2015skylightpolarization,
   miyazaki09sunlightpolarization, wang2014bionic,
-  lu2015angle,hamaoui2017polarized}.  These studies, often used the polarized
-pattern to create a sort of compass and estimate the solar azimuth angle and
-mainly have been shared in optic filed.  Estimating polarized patterns,
-however, have been a difficult and complex task.  The primary studies report
-the use of several photodiodes \cite{lambrinos2000insectnavigation,
-  chu2009application, zhao2009novel, wang2015novel,chahl2013integration}, while
-later either multiple cameras \cite{ashkanazy2015bio, sturzl2012fisheye,
-  wang2014bionic} or manual rotating filter \cite{ma2015skylightpolarization,
-  miyazaki09sunlightpolarization, lu2015angle, hamaoui2017polarized} were used.
-As a consequence of difficult and troublesome setups, exploiting the advantages
-of polarized patterns in our environment have been very limited. An example
-refers to the lack of using polarized sensors in \gls{uav}.  However, recent
+  lu2015angle,hamaoui2017polarized}.
+These studies are generally reported in the optic field. They focus on
+estimating the solar azimuth angle by creating a sort of compass.
+Estimating polarized patterns
+have been, however, a difficult and complex task.  The primary studies report
+the use of several photodiodes~\cite{lambrinos2000insectnavigation,
+  chu2009application, zhao2009novel, wang2015novel,chahl2013integration}, or of multiple cameras~\cite{ashkanazy2015bio, sturzl2012fisheye,
+  wang2014bionic} or manually rotating filters~\cite{ma2015skylightpolarization,
+  miyazaki09sunlightpolarization, lu2015angle, hamaoui2017polarized}.
+As a consequence of those troublesome setups, robotic applications are not
+benefiting from the advantages of polarized patterns, as attested  by the lack
+of polarized sensors used in \gls{uav}.  However, the recent
 introduction of \gls{dofp} micropolarizer cameras has offered an alternative
-solution \cite{nordin1999micropolarizer, nordin1999diffractive,
+solution~\cite{nordin1999micropolarizer, nordin1999diffractive,
   millerd2006pixelated}.  In such cameras a micropolarizer filter array,
 composed of a pixelated polarized filters oriented at different angles, is
-aligned with a detector array. Thus they can simultaneously acquire linear
-polarization information in one image capture.  Such a camera with a fisheye
-lens is used in this research to exploit the polarized information of sky
-region for attitude estimation.  The used camera and their adaptation for
-robotics application is latter explained in Sect.~\ref{sec:rosify}.
+aligned with a detector array. Thus, linear polarization information are
+simultaneously acquired taking a single image. Here, we use a \gls{dofp}
+coupled with a fisheye lens to exploit the polarized information of sky region
+to estimate vehicle attitude.
 
-In the remainder of this paper, Sect.~\ref{sec:pcues} provides a brief
-introduction to polarization by scattering, Rayleigh model and explains how
-these information can be used for attitude estimation. Sect.~\ref{sec:g-abs-rel}
-represents our model for attitude estimation. Experiments and implementation
-details are explained in Sect.~\ref{sec:exp-res}, and finally discussion and
-conclusion is presented in Sect.~\ref{sec:p6}.
+In this paper, Sect.\,\ref{sec:rosify} presents the specificity of the camera
+used and the adaptation required for our robotic application. The remainder of
+the paper is organized as follows: Sect.\,\ref{sec:pcues} introduces the
+concepts of polarization by scattering, Rayleigh model and the relation with
+attitude estimation while our formulation to estimate attitude is presented in
+Sect.\,\ref{sec:g-abs-rel}. Experiments and implementation details are given
+in Sect.\,\ref{sec:exp-res}, and finally discussions and conclusions are
+drawn in Sect.\,\ref{sec:dis-con}.
 
 
 
