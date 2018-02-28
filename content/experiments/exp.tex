@@ -39,10 +39,10 @@ optimal conditions.
 \begin{figure}
     \centering
     \subfigure[\gls{aop}]{\includegraphics[width= 0.22\textwidth, height=0.12
-      \textheight]{./content/experiments/figures/aop-no-noise.png}}\hfill
+      \textheight]{./content/experiments/figures/aop-no-noise.jpg}}\hfill
     \label{fig:aop-syn}
     \subfigure[\gls{dopl}]{\includegraphics[width=0.22\textwidth, height=0.12
-      \textheight]{./content/experiments/figures/dop-no-noise.png}}
+      \textheight]{./content/experiments/figures/dop-no-noise.jpg}}
     \label{fig:dop-syn}
     \hspace*{\fill}
     \caption{Synthetically created \gls{aop} and \gls{dopl} images of sky
@@ -59,7 +59,7 @@ respectively. This dataset has 856 samples, however for simplicity, it has
 being down sampled by sampling rate of 30 samples.
 
 \begin{figure}
-  \includegraphics[width=0.5\textwidth]{./content/experiments/figures/ideal-syn-abs-rel-2.png}
+  \includegraphics[width=0.47\textwidth]{./content/experiments/figures/ideal-syn-abs-rel-2.jpg}
   \caption{Absolute and relative rotation obtained from synthetic data in
     optimal conditions. The black line represents the \gls{gt}, the
     \textcolor{red}{dots} and the \textcolor{green}{stars} represent the
@@ -79,12 +79,12 @@ $\%10$ noise.
 \begin{figure}
   \centering
   \subfigure[\gls{aop}]{\includegraphics[width=0.22\textwidth,
-    height=0.12\textheight]{./content/experiments/figures/aop-noise-01-2.png}}\hfill
-  \label{fig:aop-noise-syn}
+    height=0.12\textheight]{./content/experiments/figures/aop-noise-01-2.jpg}
+    \label{fig:aop-noise-syn}}\hfill
   \subfigure[\gls{dopl}]{\includegraphics[width=0.22\textwidth,
-    height=0.12\textheight]{./content/experiments/figures/dop-noise-01-2.png}}
+    height=0.12\textheight]{./content/experiments/figures/dop-noise-01-2.jpg}
+    \label{fig:dop-noise-syn}}
   \hspace*{\fill}
-  \label{fig:dop-noise-syn}
   \caption{Synthetically created \gls{aop} and \gls{dopl} images of sky
       region with noise level of $0.1$. With yaw, pitch and roll angle of 1.8, -0.2 and 0.1, respectively.}
   \label{fig:aop-dop-syn-noisy}
@@ -93,14 +93,14 @@ $\%10$ noise.
 Performing the same 2-random-point algorithm as before on noisy dataset leads
 to the results illustrated in Fig.~\ref{fig:res-noisy-syn-abs-rel}. As expected the
 performance decline, simply due to the noise.
-\begin{figure}
-  \includegraphics[width=0.5\textwidth]{./content/experiments/figures/noisy-syn-abs-rel-2.png}
-  \caption{Absolute and relative rotation obtained from synthetic data with
-    $10\%$ noise. The black line represents the \gls{gt}, the
-    \textcolor{red}{dots} and the \textcolor{green}{stars} represent the
-    absolute and relative predicted rotations, respectively.}
-  \label{fig:res-noisy-syn-abs-rel}
-\end{figure}
+% \begin{figure}
+%   \includegraphics[width=0.5\textwidth]{./content/experiments/figures/noisy-syn-abs-rel-2.jpg}
+%   \caption{Absolute and relative rotation obtained from synthetic data with
+%     $10\%$ noise. The black line represents the \gls{gt}, the
+%     \textcolor{red}{dots} and the \textcolor{green}{stars} represent the
+%     absolute and relative predicted rotations, respectively.}
+%   \label{fig:res-noisy-syn-abs-rel}
+% \end{figure}
 
 To solve this problem, we defined two ransac models for the absolute and
 relative rotation, respectively.  In the proposed ransac model for absolute
@@ -116,17 +116,50 @@ model, the optimal vector representing each frame is obtained.
 Running our ransac models on the noisy datasets, with error threshold of 0.07,
 10 random points (2 points for defining the model and the rest as test), and
 2000 iterations the following results are obtained:
-\begin{figure}
+\begin{figure*}
   \centering
-  \includegraphics[width=0.5\textwidth]{./content/experiments/figures/noisy-ransac-abs-rel-2.png}
+  \subfigure[The theoretical method without ransac optimization]{
+    \includegraphics[width=0.47\textwidth]{./content/experiments/figures/noisy-syn-abs-rel-2.jpg}
+  \label{fig:res-noisy-syn-abs-rel}}\hfill
+  \subfigure[The theoretical method with ransac optimization]{
+    \includegraphics[width=0.47\textwidth]{./content/experiments/figures/noisy-ransac-abs-rel-3.jpg}
+    \label{fig:res-noisy-syn-ransac-abs-rel}}
+  \hspace*{\fill}
   \caption{Absolute and relative rotation obtained from  noisy synthetic data
-    and ransac optimization. The black line represents the \gls{gt}, the
+    without and with ransac optimization. The black line represents the \gls{gt}, the
     \textcolor{red}{dots} and the \textcolor{green}{stars} represent the
-    absolute and relative predicted rotations, respectively. The last graph
-    shows the difference between rotation matrices obtained from \gls{imu} and
-    predicted absolute and relative rotations respectively.}
-  \label{fig:res-noisy-syn-ransac-abs-rel}
-\end{figure}
+    absolute and relative predicted rotations, respectively.}
+  \label{fig:noisy-data}
+\end{figure*}
+
+The quantitative results in terms of mean difference ($\mu$) and standard
+deviation ($\sigma$)
+between the predicted rotations and \gls{gt} are tabulated in
+Table.~\ref{tab:tab1}.
+
+\begin{table}
+  \caption{Mean difference and standard deviation comparison between predicted
+    results and \gls{gt} in radian.}
+  \begin{tabular}{l cc cc cc}
+    \toprule
+    & \multicolumn{2}{c}{Yaw} & \multicolumn{2}{c}{Pitch} &
+                                                            \multicolumn{2}{c}{Roll}\\
+    \midrule
+    & $\mu$ & $\pm \sigma$ &  $\mu$ & $\pm \sigma$ &  $\mu$ & $\pm \sigma$\\
+    \cmidrule{2-3} \cmidrule{4-5} \cmidrule{6-7}
+
+    Absolute & 0.087 & 0.078 & 0.020 & 0.029 & 0.068 & 0.100 \\
+    Relative & 0.275 & 0.35 & 0.113 & 0.123 & 0.148 & 0.111\\
+    \bottomrule
+  \end{tabular}
+  \label{tab:tab1}
+\end{table}
+
+
+The mean difference and standard deviation between predicted rotations and
+\gls{gt}
+
+
 As illustrated in Fig.~\ref{fig:res-noisy-syn-ransac-abs-rel}, using the ransac
 model the outliers are ignored and satisfactory results are achieved.
 
