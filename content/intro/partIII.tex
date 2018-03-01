@@ -32,16 +32,13 @@ are used thereafter to calculate polarized parameters such as \gls{aop} and
   \label{fig:raw-sp}
 \end{figure*}
 
-\begin{figure*}
+\begin{figure}
   \centering
-  \includegraphics[width=0.7\textwidth]{./content/intro/figures/stokes_aop_dop.jpg}
-  \caption{Calculated stokes parameters ($s_0, s_1, s_2$), \gls{aop}, and
-    \gls{dopl} images. For visualization purpose, \gls{aop} is represented in
-    $hsv$ color space.}
-  \label{fig:stokes-aop-dop}
-\end{figure*}
-
-
+  \includegraphics[width=0.47\textwidth]{./content/intro/figures/aop-dop.jpg}
+  \caption{The \gls{aop}, and \gls{dopl} images. For visualization purpose,
+    \gls{aop} is represented in $hsv$ color space.
+    \label{fig:stokes-aop-dop}}
+\end{figure}
 
 
 \begin{subequations}
@@ -67,11 +64,10 @@ of the size of the raw image, or can be interpolated to the full
 size~\cite{ratliff2009interpolationmicrogrid,gao2011bilinearpolarimeters}.  The
 super-pixel method was used for the results presented in this paper. Being
 interested in large-field of view, a fisheye lens of 180-degree was used on the
-camera, \textcolor{red}{information of the lens}.
+camera.
 
-An example of captured raw image, the linearly polarized
-images and subsequently the three stokes parameters and polarized information
-is shown in Fig.~\ref{fig:raw-sp}~$\&$~\ref{fig:stokes-aop-dop}.
+An example of captured raw image, the linearly polarized images and polarized
+information is shown in Fig.~\ref{fig:raw-sp}~$\&$~\ref{fig:aop-dop}.
 
 The \textit{IMPREX Bobcat GEV} camera operates using eBus SDK-pleora driver and
 libraries~\cite{eBus}. To be able to use the camera integrated with other

@@ -3,7 +3,12 @@
 
 \section{Polarized cues used for attitude estimation}
 \label{sec:pcues}
-
+To understand the polarized cues that are used for attitude estimation, three
+main concepts are covered in this section: (i) the Rayleigh scattering model and
+interesting aspects of polarization by scattering, (ii) the polarization
+parameters in pixel frame and its relation to camera, and (iii) the
+relationship between the polarized parameters in the pixel frame and other
+parameters for attitude estimation.
 % solar zenith: angle between the zenith and the center of the sun disk $\theta_s$
 % solar elevation: altitude of the sun, angle between the horizon and the
 % center of the sun disk $\alpha_s$
@@ -30,9 +35,10 @@ sunlight.  Despite its simplification and assumption, this model proved to be
 sufficient for describing skylight scattering and polarization
 patterns~\cite{pomozi2001clearsky, horvath2002ground}.
 
-The Rayleigh model predicts that the unpolarized sunlight becomes
-linearly polarized after being scattered by the atmosphere. On the one hand, the Degree of linear
-Polarization is directly linked to the scattering angle ($\gamma$) according to:
+The Rayleigh model predicts that the unpolarized sunlight becomes linearly
+polarized after being scattered by the atmosphere. Based on this model two
+main outcomes are drawn. On the one hand, the Degree of linear Polarization is
+directly linked to the scattering angle ($\gamma$) according to:
 
 \begin{equation}
   \label{eq:3}
@@ -42,13 +48,14 @@ Polarization is directly linked to the scattering angle ($\gamma$) according to:
 
 where $\rho_{l_{max}}$ is a constant that should be equal to 1 in theory but in practice
 the constant is slightly less than 1 due to some atmospheric disturbances\cite{pomozi2001clearsky}.
-The scattering angle $\gamma$ is defined by the angle between the observed celestial vector $\vec{c}$ and the sun 
+The scattering angle $\gamma$ is defined by the angle between the observed celestial vector $\vec{c}$ and the sun
 vector $\vec{s}$ as presented Fig.~\ref{fig:scattering}. It can be noticed that
 the Degree of Polarization is 0 in the sun direction and maximum when the scattering angle is $\pi/2$.
 \cite{smith2007polarization, miyazaki09sunlightpolarization}.
 
-On the other hand, the scattered light is said polarized orthogonally to the scattering plane.
-Consequently, the Angle of Polarization is directly related to the orientation of the scattering plane.
+On the other hand, the scattered light is considered to be polarized and
+orthogonal to the scattering plane.  Consequently, the Angle of Polarization is
+directly related to the orientation of the scattering plane.
 
 \begin{figure}
   \centering
@@ -62,25 +69,26 @@ Consequently, the Angle of Polarization is directly related to the orientation o
 \end{figure}
 
 
-\subsection{Polarization by scattering model for sky pattern}
+\subsection{Polarization by scattering model in pixel frame}
 \label{subsec:pscattering}
-As presented Fig.~xx, an image is considered as a collection of pixels, and each pixel measures the polarization 
-parameters of the light travelling along a ray associated with that pixel. The pixel frame $\mathcal{P}$ is defined 
-accordingly with the ray which coincides with $\vec{c}$. The camera calibration determines the relationship between 
-pixels and these 3D rays.
+As presented Fig.~\ref{fig:pixelframe}, an image is considered as a collection
+of pixels, and each pixel measures the polarization parameters of the light
+travelling along a ray associated with that pixel. The pixel frame
+$\mathcal{P}$ is defined accordingly with the ray which coincides with
+$\vec{c}$. The camera calibration determines the relationship between pixels
+and these 3D rays.
 
 \begin{figure}
   \centering
-  \includegraphics[width=0.47\textwidth]{./content/intro/figures/pixelframe.pdf}
+  \includegraphics[scale=0.8]{./content/intro/figures/pixelframe.pdf}
   \caption{Rotation between the camera frame $\mathcal{C}$ and one pixel frame $\mathcal{P}$. The light ray associated to the pixels are represented in dark orange. The pixel that corresponds to the center of the image has obiously the same frame as the camera.}
     \label{fig:pixelframe}
 \end{figure}
 
-
 Let's consider one pixel of the image with its associated pixel frame $\mathcal{P}$ ($\widehat{obc}$).
 Based on Rayleigh scattering the electric field of incident light after
 scattering is perpendicular to the scattering plane, that is defined by the
-observer, celestial point and the sun.  
+observer, celestial point and the sun.
 Accordingly the normalized electric field vector $\vec{E}$ in the world frame
 is presented as the normalized cross product of $\vec{s}$ and
 $\vec{c}$ (see Eq.~\ref{Eq:E}).
@@ -155,14 +163,13 @@ In another word, the sun vector is expressed in the pixel frame as a vector depe
 \label{subsec:ps-attitude}
 To derive equations applicable in attitude estimation process, all rotations matrices that describe the frame change
 must be taken into considerations. The overview of the considered scenario, the frame conventions and rotations
-for an \gls{uav} is shown in Fig.~\ref{fig:rotation}. The \gls{imu} frame was added for comparisons purposes. 
+for an \gls{uav} is shown in Fig.~\ref{fig:rotation}. The \gls{imu} frame was added for comparisons purposes.
 
 \begin{figure}[h]
   \centering
   \includegraphics[width=0.5\textwidth]{./content/intro/figures/conventions.pdf}
   \caption{Frame conventions and rotations for attitude estimation of an
-    \gls{uav}- \textcolor{red}{-the figure needs to be changed pixel frame
-      should be added, some parts can be removed.}}
+    \gls{uav}}
   \label{fig:rotation}
 \end{figure}
 In Fig.~\ref{fig:rotation} the $\mathcal{W}, \mathcal{W'}, \mathcal{I},
@@ -210,10 +217,10 @@ world frame, ergo:
   \end{split}
 \end{equation}
 
-The above equation shows a direct relationship between the rotation matrix of the vehicle $R$, 
-the angle of polarization (that can be measured by the polarimetric camera at one pixel) and the 
+The above equation shows a direct relationship between the rotation matrix of the vehicle $R$,
+the angle of polarization (that can be measured by the polarimetric camera at one pixel) and the
 angle of scattering $\gamma$ for the corresponding pixel. In addition, if $\rho_{lmax}$ is known,
-the angle of scattering could be directly obtained by inverting equation~xx providing a direct relation
+the angle of scattering could be directly obtained by inverting equation~\ref{eq:Rwv} providing a direct relation
 between polarization parameters and the rotation of the vehicle.
 
 % Some stuff that emac's colegues use
