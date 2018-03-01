@@ -3,12 +3,20 @@
 
 \section{Polarized cues used for attitude estimation}
 \label{sec:pcues}
-To understand the polarized cues that are used for attitude estimation, three
-main concepts are covered in this section: (i) the Rayleigh scattering model and
-interesting aspects of polarization by scattering, (ii) the polarization
-parameters in pixel frame and its relation to camera, and (iii) the
-relationship between the polarized parameters in the pixel frame and other
-parameters for attitude estimation.
+
+Polarized cues used for attitude estimation are based on three main concepts
+which are presented in this section: (i) the Rayleigh scattering model and its
+implications on the polarization by scattering, (ii) the polarization
+parameters in pixel frame and its relation to camera, and (iii) the connection
+between the polarized parameters in the pixel frame and the parameters used to
+estimate the vehicle attitude.
+
+% To understand the polarized cues that are used for attitude estimation, three
+% main concepts are covered in this section: (i) the Rayleigh scattering model and
+% interesting aspects of polarization by scattering, (ii) the polarization
+% parameters in pixel frame and its relation to camera, and (iii) the
+% relationship between the polarized parameters in the pixel frame and other
+% parameters for attitude estimation.
 % solar zenith: angle between the zenith and the center of the sun disk $\theta_s$
 % solar elevation: altitude of the sun, angle between the horizon and the
 % center of the sun disk $\alpha_s$
@@ -24,21 +32,21 @@ parameters for attitude estimation.
 \subsection{Rayleigh scattering model}
 \label{subsec:rayleigh}
 The unpolarized sunlight passing through our atmosphere gets scattered by
-different particles within the atmosphere.  Beside deviating the direction of
-propagate wave, this transition also changes the polarization state of the
-incident light. This transition can be explained using Rayleigh scattering
-model.  Rayleigh scattering describes the scattering of light or any
-electromagnetic waves by particles much smaller than their transmission
-wavelength. Accordingly it assumes that scattering particles of the atmosphere
-are small, homogeneous particles much smaller than the wavelength of the
-sunlight.  Despite its simplification and assumption, this model proved to be
-sufficient for describing skylight scattering and polarization
-patterns~\cite{pomozi2001clearsky, horvath2002ground}.
+different particles within the atmosphere. Besides deviating the direction of
+a propagated wave, this transition also changes the polarization state of the
+incident light which can be explained using the Rayleigh scattering model.
+Rayleigh scattering describes the scattering of light (or any
+electromagnetic waves) by particles much smaller than their transmission
+wavelength. Accordingly, it assumes that scattering particles of the atmosphere
+are homogeneous and smaller than the wavelength of the sunlight. Despite these
+assumptions, this model proved to be sufficient for describing skylight
+scattering and polarization
+patterns~\cite{pomozi2001clearsky,horvath2002ground}.
 
 The Rayleigh model predicts that the unpolarized sunlight becomes linearly
-polarized after being scattered by the atmosphere. Based on this model two
-main outcomes are drawn. On the one hand, the Degree of linear Polarization is
-directly linked to the scattering angle ($\gamma$) according to:
+polarized after being scattered by the atmosphere. Based on this model, two
+main outcomes are drawn. On the one hand, \gls{dopl} is directly linked to the
+scattering angle $\gamma$ according to:
 
 \begin{equation}
   \label{eq:3}
@@ -46,12 +54,13 @@ directly linked to the scattering angle ($\gamma$) according to:
       2}(\gamma)}
 \end{equation}
 
-where $\rho_{l_{max}}$ is a constant that should be equal to 1 in theory but in practice
-the constant is slightly less than 1 due to some atmospheric disturbances\cite{pomozi2001clearsky}.
-The scattering angle $\gamma$ is defined by the angle between the observed celestial vector $\vec{c}$ and the sun
-vector $\vec{s}$ as presented Fig.~\ref{fig:scattering}. It can be noticed that
-the Degree of Polarization is 0 in the sun direction and maximum when the scattering angle is $\pi/2$.
-\cite{smith2007polarization, miyazaki09sunlightpolarization}.
+\noindent where $\rho_{l_{max}}$ is a constant equal to 1 in theory but
+slightly less than 1 in practice due to some atmospheric
+disturbances~\cite{pomozi2001clearsky}. The scattering angle $\gamma$ is
+defined by the angle between the observed celestial vector $\vec{c}$ and the
+sun vector $\vec{s}$ as presented in Fig.\,\ref{fig:scattering}. Note that
+\gls{dopl} is 0 in the sun direction and maximum when the scattering angle is
+$\frac{\pi}{2}$~\cite{smith2007polarization,miyazaki09sunlightpolarization}.
 
 On the other hand, the scattered light is considered to be polarized and
 orthogonal to the scattering plane.  Consequently, the Angle of Polarization is
