@@ -3,8 +3,12 @@
 
 \section{Attitude estimation}
 \label{sec:g-abs-rel}
-This section explains how to estimate scattering angle ($\gamma$), absolute and
-relative rotation of the \gls{uav} in world frame ($R_{wv}$).
+In this section, a method is first proposed to estimate the scattering angle~$\gamma$ 
+without any asumption regarding the constant $\rho_{lmax}$ which can not be estimated in general.
+Then two approaches are considered. The first one, called absolute rotation, makes the asumption
+that the sun position is knwon or can be deduced from time and the GPS location of the vehicle. The second 
+called relative rotation enables to estimate the relative rotation of the vehicle from the intial position of the vehicle without any additional assumption regarding the sun position. 
+
 
 \subsection{$\gamma$ estimation}
 \label{sec:gamma}
@@ -152,9 +156,10 @@ R_{vc}^{t}
 \end{equation}
 
 
-In this section we explained the basic theory of attitude estimation based on
-polarization by scattering.
-This theory, however needs to be tested which is explained in the next section.
+The basic theory of attitude estimation based on polarization by scattering was explained in this
+section emphasizing that in both approaches, only two points from the pattern of the sky are required
+to solve the scattering angle $\gamma$. As described in the following section, an algorithm to robustify 
+the results is implementing by considering more points.
 
 
 
