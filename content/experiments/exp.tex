@@ -3,9 +3,8 @@
 
 \section{Experiments and Results}
 \label{sec:exp-res}
-This section presents our setup, the designed experiments, the obtained
-results, the difficulties faced during the experiments and our provided
-solutions.
+This section presents our setup, the designed experiments and the obtained
+results.
 The setup used in our experiment is based on fig.~\ref{fig:rotation}.
 However instead of using a \gls{uav}, a camera was manually moved (see
 Fig.~\ref{fig:setup}).
@@ -64,7 +63,7 @@ simplicity, it has being down sampled by sampling rate of 30 samples.
 Although using our proposed framework we were able to achieve perfect results
 on ideal synthetic data, in reality it is rare to obtain the perfect skylight
 polarization pattern. Variety of causes clutter the desired skylight pattern,
-main one being pollution. To account for such cases, a second experiment was
+main one being pollution. To account for such cases, a second test was
 performed while significant level of noise was added to the created synthetic
 data.
 Figure~\ref{fig:aop-dop-syn-noisy} shows the an example of synthetic data with
@@ -96,7 +95,7 @@ performance decline, simply due to the noise.
 %   \label{fig:res-noisy-syn-abs-rel}
 % \end{figure}
 
-To solve this problem, two ransac models are defined for the absolute and
+To solve this problem, two ransac models were defined for the absolute and
 relative rotation, respectively.  In the proposed ransac model for absolute
 rotation, since the sun position is assumed to be known the ransac model
 optimizes the full rotation of each frame in comparison to the origin
@@ -161,14 +160,15 @@ pose in the world frame.
 The original data set contains 593 recordings. However for simplicity it was
 down sampled with sampling rate of 20 frames.
 Running ransac optimization with the same criteria as previous experiment the
-following results are obtained.
+following results are obtained (see Fig.~\ref{fig:res-real-ransac-abs-rel} $\&$
+Table.~\ref{tab:tab2}).
 \begin{figure}
   \includegraphics[width=0.47\textwidth]{./content/experiments/figures/real-ransac-abs-rel-2.jpg}
   \caption{Absolute and relative rotation obtained from real data. The black
     line represents the \gls{gt}, the \textcolor{red}{dots} and the
     \textcolor{green}{stars} represent the absolute and relative predicted
     rotations, respectively.}
-  \label{fig:res-syn-ideal-abs-rel}
+  \label{fig:res-real-ransac-abs-rel}
 \end{figure}
 
 
@@ -188,7 +188,7 @@ following results are obtained.
     Relative & 0.37 & 0.40 & 0.20 & 0.18 & 0.20 & 0.18\\
     \bottomrule
   \end{tabular}
-  \label{tab:tab1}
+  \label{tab:tab2}
 \end{table}
 
 
