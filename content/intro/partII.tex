@@ -51,7 +51,7 @@ scattering angle $\gamma$ according to:
 \begin{equation}
   \label{eq:3}
   \rho_{l} = \rho_{l_{max}}\frac{1 - \cos^{2}(\gamma)}{1 + \cos^{
-      2}(\gamma)}
+      2}(\gamma)} \ ,
 \end{equation}
 
 \noindent where $\rho_{l_{max}}$ is a constant equal to 1 in theory but
@@ -104,7 +104,7 @@ $\vec{c}$ as shown in Eq.\,\eqref{Eq:E}.
 
 \begin{equation}
 \vec{E}=\frac{\vec{s}\wedge \vec{c}}{\left\Vert \vec{s}\wedge
-    \vec{c}\right\Vert }
+    \vec{c}\right\Vert } \ ,
 \label{Eq:E}
 \end{equation}
 
@@ -121,7 +121,7 @@ E_{b}\\
 \cos\alpha\\
 \sin\alpha\\
 0
-\end{array}\right]
+\end{array}\right] \ ,
 \label{Eq:Eproj}
 \end{equation}
 \noindent where $\alpha$ is the measured \gls{aop} associated to the corresponding pixel.
@@ -131,7 +131,7 @@ scattering angle $\gamma$, between $\vec{s}$ and $\vec{c}$ lead to:
   \begin{cases}
 (s\wedge c)\cdot o & =\sin\gamma\cos\alpha\\
 (s\wedge c)\cdot b & =\sin\gamma\sin\alpha
-\end{cases}
+\end{cases} \ .
 \label{eq:E0EB vect-1-1}
 \end{equation}
 
@@ -141,12 +141,12 @@ Applying the vector triplet cross product rule on Eq.\,\eqref{eq:E0EB
 \begin{cases}
 s\cdot b & =\sin\gamma\cos\alpha\\
 s\cdot o & =-\sin\gamma\sin\alpha
-\end{cases}
+\end{cases} \ .
 \label{eq:scal-b-o}
 \end{equation}
 Using Eq.\,\eqref{eq:3}, the scattering angle $\gamma$ is expressed as:
 \begin{equation}
-\cos\gamma=s\cdot c=\pm\sqrt{\frac{1-\rho_{l}'}{1+\rho_{l}'}}
+\cos\gamma=s\cdot c=\pm\sqrt{\frac{1-\rho_{l}'}{1+\rho_{l}'}} \ ,
 \label{Eq:cosg}
 \end{equation}
 \noindent with $\rho_{l}'=\frac{\rho_{l}}{\rho_{l_{max}}}.$ \\
@@ -164,7 +164,7 @@ position:
     -\sin\gamma \sin\alpha\\
     \sin\gamma \cos\alpha\\
     \cos\gamma
-  \end{bmatrix}
+  \end{bmatrix} \ .
 \end{equation}
 In other words, the sun vector is expressed in the pixel frame as a vector
 depending only on the polarization parameters \gls{aop} and \gls{dopl}, which
@@ -172,31 +172,38 @@ is directly linked to the scattering angle~$\gamma$.
 
 \subsection{UAV attitude and polarized sky pattern}
 \label{subsec:ps-attitude}
-To derive equations applicable in attitude estimation process, all rotations matrices that describe the frame change
-must be taken into considerations. The overview of the considered scenario, the frame conventions and rotations
-for an \gls{uav} is shown in Fig.~\ref{fig:rotation}. The \gls{imu} frame was added for comparisons purposes.
+
+Figure~\ref{fig:rotation} illustrates all transformations and frame conventions
+to consider to estimate the attitude of a \gls{uav}. In addition, an \gls{imu}
+frame is added for later comparisons.
+
+% To derive equations applicable in attitude estimation process, all rotation
+% matrices that describe the frame change must be taken into considerations. The
+% overview of the considered scenario, the frame conventions and rotations for an
+% \gls{uav} is shown in Fig.\,\ref{fig:rotation}. The \gls{imu} frame was added
+% for comparisons purposes.
 
 \begin{figure}[h]
   \centering
   \includegraphics[width=0.5\textwidth]{./content/intro/figures/conventions.pdf}
   \caption{Frame conventions and rotations for attitude estimation of an
-    \gls{uav}}
+    \gls{uav}.}
   \label{fig:rotation}
 \end{figure}
-In Fig.~\ref{fig:rotation} the $\mathcal{W}, \mathcal{W'}, \mathcal{I},
-\mathcal{V}, \mathcal{C},$ and $\mathcal{P}$, present the world frame, global
+In Fig.\,\ref{fig:rotation}, $\mathcal{W}, \mathcal{W'}, \mathcal{I},
+\mathcal{V}, \mathcal{C},$ and $\mathcal{P}$ refer to the world frame, global
 frame of \gls{imu}, \gls{imu} frame, vehicle frame, camera frame, and pixel
-frame respectively. Where the rotation from each frame to another is presented
+frame, respectively. The rotation from one frame to another is presented
 with lowercase alphabet.
-In the shown scenario, a vector $v_{p}$ in pixel frame is
-expressed in the world frame, $v_{w}$:
+In this scenario, a vector $v_{p}$ in pixel frame is expressed in the world
+frame $v_{w}$ as: 
 \begin{equation}
   \label{eq:vinW}
-  v_{w} = R_{wv} \cdot R_{vc} \cdot R_{cp} \cdot v_{p}
+  v_{w} = R_{wv} \cdot R_{vc} \cdot R_{cp} \cdot v_{p} \ , 
 \end{equation}
 \noindent where the rotation from the camera to the pixel frame $R_{cp}$ is
 obtained by camera calibration. The rotation is
-defined as the yaw and pitch rotation by the zenith and azimuth angle of the
+defined as the yaw and pitch rotations by the zenith and azimuth angles of the
 celestial point ($\theta_c, \phi_c$) as shown in Eq.\,\eqref{eq:Rcp}.
 \begin{equation}
   \label{eq:Rcp}
@@ -206,15 +213,15 @@ celestial point ($\theta_c, \phi_c$) as shown in Eq.\,\eqref{eq:Rcp}.
     \cos\theta_{c}\cos\phi_{c} & -\sin\phi_{c} & \sin\theta_{c}\cos\phi_{c}\\
     \cos\theta_{c}\sin\phi_{c} & \cos\phi_{c} & \sin\theta_{c}\sin\phi_{c}\\
     -\sin\theta_{c} & 0 & \cos\theta_{c}
-  \end{bmatrix}
+  \end{bmatrix} \ ,
   \\
-  & = R_{z_{c}}(\phi_{c})\cdot R_{y_{c}}(\theta_{c})
+  & = R_{z_{c}}(\phi_{c})\cdot R_{y_{c}}(\theta_{c}) \ .
   \end{split}
 \end{equation}
 
-Previously we presented how to express sun position in pixel frame (see
-Eq.\,\eqref{eq:sunp}). Indeed this representation is applied to any point from
-world frame, ergo:
+In Eq.\,\eqref{eq:sunp}, we expressed the sun position in the pixel frame. Indeed,
+this representation can be applied to any point from the world frame, ergo:
+
 \begin{equation}
   \label{eq:Rwv}
   \begin{split}
@@ -223,15 +230,22 @@ world frame, ergo:
     -\sin\gamma \sin\alpha\\
     \sin\gamma \cos\alpha\\
     \cos\gamma
-  \end{bmatrix} = R_{wv} \cdot R_{vc} \cdot v\\
-    & R^{T} \cdot s_{w}  = v
+  \end{bmatrix} \ , \\
+  &= R_{wv} \cdot R_{vc} \cdot v \ ,
   \end{split}
 \end{equation}
 
-The above equation shows a direct relationship between the rotation matrix of the vehicle $R$,
-the angle of polarization~$\alpha$(that can be measured by the polarimetric camera at one pixel) and the
-angle of scattering $\gamma$ for the corresponding pixel. In addition, if $\rho_{lmax}$ is known,
-the angle of scattering could be directly obtained by inverting equation~\ref{Eq:cosg} providing a direct relation
+\noindent thus
+
+\begin{equation}
+  R^{T} \cdot s_{w}  = v \ .
+\end{equation}
+
+The above equation shows a direct relation between the rotation matrix of the
+vehicle $R$, the \gls{aop}~$\alpha$ --- measured by the polarimetric camera at
+one pixel --- and the angle of scattering $\gamma$ for the corresponding
+pixel. In addition, if $\rho_{lmax}$ is known, the angle of scattering is
+directly obtained by inverting Eq.\,\eqref{Eq:cosg} providing a direct relation
 between polarization parameters and the rotation of the vehicle.
 
 % Some stuff that emac's colegues use
