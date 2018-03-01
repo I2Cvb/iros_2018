@@ -30,63 +30,29 @@ sunlight.  Despite its simplification and assumption, this model proved to be
 sufficient for describing skylight scattering and polarization
 patterns~\cite{pomozi2001clearsky, horvath2002ground}.
 
-The Rayleigh scattering model predicts that the unpolarized sunlight becomes
-linearly polarized passing through the atmosphere.
-Equation~\ref{eq:1} shows the stokes parameters for natural light after and
-before passing through the atmosphere, since the last stokes parameter is $0$
-after scattering, the light is considered to be linearly polarized.
-\begin{equation}
-  \label{eq:1}
-  s_{unp} =
-  \begin{bmatrix}
-    1\\0\\0\\0
-  \end{bmatrix}
-  \xrightarrow[]{\text{scattering}}
-  s_{p}=
-  \begin{bmatrix}
-   s_0 \\ s_1 \\ s_2 \\ 0
- \end{bmatrix}
-\end{equation}
+The Rayleigh model predicts that the unpolarized sunlight becomes
+linearly polarized after being scattered by the atmosphere. On the one hand, the Degree of linear
+Polarization is directly linked to the scattering angle ($\gamma$) according to:
 
-Having polarization state of light, the \gls{dopl} ($\rho_{l}$) can be
-calculated as presented in Eq.~\ref{eq:stokes2}. This measure is related to the
-scattering angle ($\gamma$) which is angular distance between the observed
-celestial point and the sun (see Eq.~\ref{eq:2}).
-
-\begin{equation}
-  \label{eq:2}
-  \rho_{l} = \frac{\sin^{2}(\gamma)}{\cos^{
-      2}(\gamma)+1}
-\end{equation}
-
-According to Rayleigh model, the \gls{dopl}, varies
-from 0 to $\approx 1$ depending on the scattering angle, $\gamma$, ($\rho_{l} =
-0$ while $\gamma = 0, \pi$ and $\rho_{l} \approx 1$ while $\gamma =
-\pi/2$)~\cite{smith2007polarization, miyazaki09sunlightpolarization}.
-Accounting for the approximation and polarization defect, Eq.~\ref{eq:2}
-is presented as~\cite{pomozi2001clearsky}:
 \begin{equation}
   \label{eq:3}
   \rho_{l} = \rho_{l_{max}}\frac{1 - \cos^{2}(\gamma)}{1 + \cos^{
       2}(\gamma)}
 \end{equation}
 
+where $\rho_{l_{max}}$ is a constant that should be equal to 1 in theory but in practice
+the constant is slightly less than 1 due to some atmospheric disturbances\cite{pomozi2001clearsky}.
+The scattering angle $\gamma$ is defined by the angle between the observed celestial vector $\vec{c}$ and the sun 
+vector $\vec{s}$ as presented Fig.~\ref{fig:scattering}. It can be noticed that
+the Degree of Polarization is 0 in the sun direction and maximum when the scattering angle is $\pi/2$.
+\cite{smith2007polarization, miyazaki09sunlightpolarization}.
 
-\subsection{Polarization by scattering model for sky pattern}
-\label{subsec:pscattering}
-This section represent the relations between polarized measurements in pixel
-frame $\mathcal{P}$ and the sun and the celestial point in the world frame
-$\mathcal{W}$.
-
-Based on Rayleigh scattering the electric field of incident light after
-scattering is perpendicular to the scattering plane, that is defined by the
-observer, celestial point and the sun.  This plane is highlighted by light
-shade of red in Fig.~\ref{fig:scattering} and is represented by a sun and
-celestial vectors, $\vec{s}$ and $\vec{c}$ respectively.
+On the other hand, the scattered light is said polarized orthogonally to the scattering plane.
+Consequently, the Angle of Polarization is directly related to the orientation of the scattering plane.
 
 \begin{figure}
   \centering
-  \includegraphics[width=0.47\textwidth]{./content/intro/figures/polasky-iros-small.png}
+  \includegraphics[width=0.47\textwidth]{./content/intro/figures/polasky-iros.pdf}
   \caption{Skylight polarization by scattering. Scattering plane is highlighted
   by light shade of red. ($\theta_s$, $\phi_s$) and ($\theta_c$, $\phi_c$)
   define the zenith and azimuth angle of sun and celestial point
@@ -94,6 +60,27 @@ celestial vectors, $\vec{s}$ and $\vec{c}$ respectively.
   $\vec{E}$ is the electrical field orthogonal to the scattering plane.}
     \label{fig:scattering}
 \end{figure}
+
+
+\subsection{Polarization by scattering model for sky pattern}
+\label{subsec:pscattering}
+As presented Fig.~xx, an image is considered as a collection of pixels, and each pixel measures the polarization 
+parameters of the light travelling along a ray associated with that pixel. The pixel frame $\mathcal{P}$ is defined 
+accordingly with the ray which coincides with $\vec{c}$. The camera calibration determines the relationship between 
+pixels and these 3D rays.
+
+\begin{figure}
+  \centering
+  \includegraphics[width=0.47\textwidth]{./content/intro/figures/pixelframe.pdf}
+  \caption{Rotation between the camera frame $\mathcal{C}$ and one pixel frame $\mathcal{P}$. The light ray associated to the pixels are represented in dark orange. The pixel that corresponds to the center of the image has obiously the same frame as the camera.}
+    \label{fig:pixelframe}
+\end{figure}
+
+
+Let's consider one pixel of the image with its associated pixel frame $\mathcal{P}$ ($\widehat{obc}$).
+Based on Rayleigh scattering the electric field of incident light after
+scattering is perpendicular to the scattering plane, that is defined by the
+observer, celestial point and the sun.  
 Accordingly the normalized electric field vector $\vec{E}$ in the world frame
 is presented as the normalized cross product of $\vec{s}$ and
 $\vec{c}$ (see Eq.~\ref{Eq:E}).
@@ -103,7 +90,8 @@ $\vec{c}$ (see Eq.~\ref{Eq:E}).
     \vec{c}\right\Vert }
 \label{Eq:E}
 \end{equation}
-The same measure in the pixel frame $\mathcal{P}$ ($\widehat{obc}$) is represented as:
+
+The same measure in the pixel frame $\mathcal{P}$  is represented as:
 % However measuring the skylight polarization pattern and \gls{aop}, the electric
 % field in the pixel frame $\mathcal{P}$ ($\widehat{obc}$) is represented as:
 
@@ -119,7 +107,7 @@ E_{b}\\
 \end{array}\right]
 \label{Eq:Eproj}
 \end{equation}
-\noindent where $\alpha$ is the measured \gls{aop}.
+\noindent where $\alpha$ is the measured \gls{aop} associated to the corresponding pixel.
 Combination of Eq.~\ref{Eq:E}~\&~\ref{Eq:Eproj} and using the
 scattering angle $\gamma$, between $\vec{s}$ and $\vec{c}$ leads to:
 \begin{equation}
@@ -149,10 +137,9 @@ represented as:
 \vspace{0.4mm}
 %\vskip{0.1mm}
 
-Equations~\ref{eq:scal-b-o}~\&~\ref{Eq:cosg} finally leads to the sun vector
+Equations~\ref{eq:scal-b-o}~\&~\ref{Eq:cosg} finally leads to a representation of the sun vector
 in pixel frame $\mathcal{P}$ which express a direct relation between the
-measured polarization parameters (\gls{aop} and \gls{dopl}),
-scattering angle, the sun position,  and the celestial point:
+\gls{aop}, the scattering angle and the sun position:
 \begin{equation}
   \label{eq:sunp}
   \vec{s}_{p} =
@@ -162,13 +149,13 @@ scattering angle, the sun position,  and the celestial point:
     \cos\gamma
   \end{bmatrix}
 \end{equation}
+In another word, the sun vector is expressed in the pixel frame as a vector depending only on the polarization parameters \gls{aop} and \gls{dopl} (which is directly linked to the scattering angle $\gamma$).
 
 \subsection{UAV attitude and polarized sky pattern}
 \label{subsec:ps-attitude}
-This section presents how the information so far presented can be used for
-attitude estimation of an \gls{uav}.
-The overview of the considered scenario, the frame conventions and rotations
-for an \gls{uav} is shown in Fig.~\ref{fig:rotation}.
+To derive equations applicable in attitude estimation process, all rotations matrices that describe the frame change
+must be taken into considerations. The overview of the considered scenario, the frame conventions and rotations
+for an \gls{uav} is shown in Fig.~\ref{fig:rotation}. The \gls{imu} frame was added for comparisons purposes. 
 
 \begin{figure}[h]
   \centering
@@ -190,6 +177,7 @@ expressed in the world frame, $v_{w}$:
   v_{w} = R_{wv} \cdot R_{vc} \cdot R_{cp} \cdot v_{p}
 \end{equation}
 \noindent where the rotation from the camera to the pixel frame $R_{cp}$ is
+obtained by camera calibration. The rotation is
 defined as the yaw and pitch rotation by the zenith and azimuth angle of the
 celestial point ($\theta_c, \phi_c$) as shown in Eq.~\ref{eq:Rcp}.
 \begin{equation}
@@ -222,14 +210,11 @@ world frame, ergo:
   \end{split}
 \end{equation}
 
-In the above equation, $\alpha$, $R_{cp}$, and $R_{vc}$ are known, however to
-find the $R_{wv}$, $\gamma$ should be estimated. How to estimate this parameter
-and definition of absolute and relative attitude estimation is explained in
-next Sect.~\ref{sec:g-abs-rel}.
-
-
-
-
+The above equation shows a direct relationship between the rotation matrix of the vehicle $R$, 
+the angle of polarization (that can be measured by the polarimetric camera at one pixel) and the 
+angle of scattering $\gamma$ for the corresponding pixel. In addition, if $\rho_{lmax}$ is known,
+the angle of scattering could be directly obtained by inverting equation~xx providing a direct relation
+between polarization parameters and the rotation of the vehicle.
 
 % Some stuff that emac's colegues use
 %%% Local Variables:
