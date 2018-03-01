@@ -12,9 +12,9 @@ linearly polarized images $I_0$, $I_{45}$, $I_{135}$, and
 $I_{90}$. Subsequently, the polarized state of the incident light is computed
 from these images by means of the Stokes'
 parameters~\cite{goldstein2017polarized}, referred as $s_0$, $s_1$, and $s_2$
-in Eq.\,\ref{eq:stokes}. In addition, the polarized parameters \gls{aop} and
+in Eq.\,\eqref{eq:stokes}. In addition, the polarized parameters \gls{aop} and
 \gls{dopl}, respectively referred $\alpha$ and $\rho_l$ in
-Eq.\,\ref{eq:stokes}) are computed.
+Eq.\,\eqref{eq:stokes} are computed.
 
 % As mentioned previously, in this work we use a \gls{dofp} polarimetric camera,
 % to be exact \textit{IMPREX Bobcat GEV polarimetric camera}.
@@ -69,11 +69,11 @@ Eq.\,\ref{eq:stokes}) are computed.
 \begin{gather}
   \begin{aligned}
     % \small
-    s_0 & = \frac{I_0 + I_{45} + I_{135} + I_{90}}{4}\\
-    s_1 & = I_0 - I_{90} \\
-    s_2 & = I_{45} - I_{135} \\
-    \alpha &= 0.5 \arctan(\frac{s_2}{s_1}) \\
-    \rho_l &= \frac{\sqrt{s_2^{2} + s_1^{2}}}{s_0}
+    s_0 & = \frac{I_0 + I_{45} + I_{135} + I_{90}}{4} \ ,\\
+    s_1 & = I_0 - I_{90} \ , \\
+    s_2 & = I_{45} - I_{135} \ , \\
+    \alpha &= 0.5 \arctan(\frac{s_2}{s_1}) \ , \\
+    \rho_l &= \frac{\sqrt{s_2^{2} + s_1^{2}}}{s_0} \ .
     \label{eq:stokes}
   \end{aligned}
 \end{gather}
