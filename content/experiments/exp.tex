@@ -6,34 +6,30 @@
 This section presents our setup, the designed experiments, the obtained
 results, the difficulties faced during the experiments and our provided
 solutions.
-
-% \subsection{Setup}
-% \label{sec:setup}
-
 The setup used in our experiment is based on fig.~\ref{fig:rotation}.
 However instead of using a \gls{uav}, a camera was manually moved (see
 Fig.~\ref{fig:setup}).
-
 \begin{figure}
   \centering
 \includegraphics[width=0.33\textwidth]{./content/experiments/figures/setup.jpg}
 \caption{The setup used for acquiring presented datasets in this paper}
 \label{fig:setup}
 \end{figure}
-
-For the presented experiments, we considered that $R_{vi}$ between \gls{imu}
-and \gls{uav}, as well as initial pose of the \gls{uav} in the world frame were
-identity.  To be able to use the \gls{imu} recordings as \gls{gt}, this device
+To be able to use the \gls{imu} recordings as \gls{gt}, this device
 was calibrated with the camera using kalibr toolbox~\cite{furgale2013unified,
   furgale2012continuous}. The polarimetric camera with fisheye lens was also
-calibrated according to~\cite{kannala2006generic}.  Using the explained setup a
-dataset of synthetic images was created.
-% Using the explained setup two dataset of synthetic and real images were
-% created. The results obtained using these two dataset are presented in
-% Exp.~\ref{exp1} and Exp.~\ref{exp2}, respectively.
-Indicating that \gls{aop} and \gls{dopl} images for sky regions were
-synthetically created using the \gls{imu} recordings obtained during real
-acquisition. Figure~\ref{fig:aop-dop-syn} shows an example of this dataset at
+calibrated according to~\cite{kannala2006generic}.
+
+Using the above setup two data sets of synthetic and real images were created
+and the results obtained are presented in Exp.~\ref{sec:exp1} and
+Exp.~\ref{sec:exp2}, respectively.
+
+
+\subsection{Experiment~1}
+\label{sec:exp1}
+The synthetic data containing \gls{aop} and \gls{dopl} images of sky regions
+were created using the \gls{imu} recordings obtained during real acquisition.
+Figure~\ref{fig:aop-dop-syn} shows an example of this dataset at
 optimal conditions.
 \begin{figure}
     \centering
@@ -154,14 +150,45 @@ Table.~\ref{tab:tab1}.
   \label{tab:tab1}
 \end{table}
 
-
-The mean difference and standard deviation between predicted rotations and
-\gls{gt}
-
-
-As illustrated in Fig.~\ref{fig:res-noisy-syn-ransac-abs-rel}, using the ransac
+As illustrated in the obtained results, using the ransac
 model the outliers are ignored and satisfactory results are achieved.
 
+\subsection{Experiment~2}
+\label{sec:exp2}
+This section presents the results obtained using real data. Same as previous
+experiment the \gls{imu} results were used to create the \gls{gt} for vehicle
+pose in the world frame.
+The original data set contains 593 recordings. However for simplicity it was
+down sampled with sampling rate of 20 frames.
+Running ransac optimization with the same criteria as previous experiment the
+following results are obtained.
+\begin{figure}
+  \includegraphics[width=0.47\textwidth]{./content/experiments/figures/real-ransac-abs-rel-2.jpg}
+  \caption{Absolute and relative rotation obtained from real data. The black
+    line represents the \gls{gt}, the \textcolor{red}{dots} and the
+    \textcolor{green}{stars} represent the absolute and relative predicted
+    rotations, respectively.}
+  \label{fig:res-syn-ideal-abs-rel}
+\end{figure}
+
+
+\begin{table}
+  \caption{Mean difference and standard deviation comparison between predicted
+    results and \gls{gt} in radian on real data.}
+  \begin{tabular}{l cc cc cc}
+    \toprule
+    & \multicolumn{2}{c}{Yaw} & \multicolumn{2}{c}{Pitch} &
+                                                            \multicolumn{2}{c}{Roll}\\
+    \midrule
+    & $\mu$ & $\pm \sigma$ &  $\mu$ & $\pm \sigma$ &  $\mu$ & $\pm \sigma$\\
+    \cmidrule{2-3} \cmidrule{4-5} \cmidrule{6-7}
+
+    Absolute & 0.23 & 0.22 & 0.27 & 0.18 & 0.18 & 0.19 \\
+    Relative & 0.37 & 0.40 & 0.20 & 0.18 & 0.20 & 0.18\\
+    \bottomrule
+  \end{tabular}
+  \label{tab:tab1}
+\end{table}
 
 
 % Fig.~\ref{fig:res-syn-optimal}.
