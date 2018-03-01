@@ -50,19 +50,6 @@ the Degree of Polarization is 0 in the sun direction and maximum when the scatte
 On the other hand, the scattered light is said polarized orthogonally to the scattering plane.
 Consequently, the Angle of Polarization is directly related to the orientation of the scattering plane.
 
-
-\subsection{Polarization by scattering model for sky pattern}
-\label{subsec:pscattering}
-This section represent the relations between polarized measurements in pixel
-frame $\mathcal{P}$ and the sun and the celestial point in the world frame
-$\mathcal{W}$.
-
-Based on Rayleigh scattering the electric field of incident light after
-scattering is perpendicular to the scattering plane, that is defined by the
-observer, celestial point and the sun.  This plane is highlighted by light
-shade of red in Fig.~\ref{fig:scattering} and is represented by a sun and
-celestial vectors, $\vec{s}$ and $\vec{c}$ respectively.
-
 \begin{figure}
   \centering
   \includegraphics[width=0.47\textwidth]{./content/intro/figures/polasky-iros-small.png}
@@ -73,6 +60,19 @@ celestial vectors, $\vec{s}$ and $\vec{c}$ respectively.
   $\vec{E}$ is the electrical field orthogonal to the scattering plane.}
     \label{fig:scattering}
 \end{figure}
+
+
+\subsection{Polarization by scattering model for sky pattern}
+\label{subsec:pscattering}
+As presented Fig.~xx, an image is considered as a collection of pixels, and each pixel measures the polarization 
+parameters of the light travelling along a ray associated with that pixel. The pixel frame $\mathcal{P}$ is defined 
+accordingly with the ray which coincides with $\vec{c}$. The camera calibration determines the relationship between 
+pixels and these 3D rays.
+
+Let's consider one pixel of the image with its associated pixel frame $\mathcal{P}$ ($\widehat{obc}$).
+Based on Rayleigh scattering the electric field of incident light after
+scattering is perpendicular to the scattering plane, that is defined by the
+observer, celestial point and the sun.  
 Accordingly the normalized electric field vector $\vec{E}$ in the world frame
 is presented as the normalized cross product of $\vec{s}$ and
 $\vec{c}$ (see Eq.~\ref{Eq:E}).
@@ -82,7 +82,8 @@ $\vec{c}$ (see Eq.~\ref{Eq:E}).
     \vec{c}\right\Vert }
 \label{Eq:E}
 \end{equation}
-The same measure in the pixel frame $\mathcal{P}$ ($\widehat{obc}$) is represented as:
+
+The same measure in the pixel frame $\mathcal{P}$  is represented as:
 % However measuring the skylight polarization pattern and \gls{aop}, the electric
 % field in the pixel frame $\mathcal{P}$ ($\widehat{obc}$) is represented as:
 
@@ -98,7 +99,7 @@ E_{b}\\
 \end{array}\right]
 \label{Eq:Eproj}
 \end{equation}
-\noindent where $\alpha$ is the measured \gls{aop}.
+\noindent where $\alpha$ is the measured \gls{aop} associated to the corresponding pixel.
 Combination of Eq.~\ref{Eq:E}~\&~\ref{Eq:Eproj} and using the
 scattering angle $\gamma$, between $\vec{s}$ and $\vec{c}$ leads to:
 \begin{equation}
@@ -128,10 +129,9 @@ represented as:
 \vspace{0.4mm}
 %\vskip{0.1mm}
 
-Equations~\ref{eq:scal-b-o}~\&~\ref{Eq:cosg} finally leads to the sun vector
+Equations~\ref{eq:scal-b-o}~\&~\ref{Eq:cosg} finally leads to a representation of the sun vector
 in pixel frame $\mathcal{P}$ which express a direct relation between the
-measured polarization parameters (\gls{aop} and \gls{dopl}),
-scattering angle, the sun position,  and the celestial point:
+\gls{aop}, the scattering angle and the sun position:
 \begin{equation}
   \label{eq:sunp}
   \vec{s}_{p} =
@@ -141,6 +141,7 @@ scattering angle, the sun position,  and the celestial point:
     \cos\gamma
   \end{bmatrix}
 \end{equation}
+In another word, the sun vector is expressed in the pixel frame as a vector depending only on the polarization parameters \gls{aop} and \gls{dopl} (which is directly linked to the scattering angle $\gamma$).
 
 \subsection{UAV attitude and polarized sky pattern}
 \label{subsec:ps-attitude}
