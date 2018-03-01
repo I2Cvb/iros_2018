@@ -80,9 +80,9 @@ directly related to the orientation of the scattering plane.
 
 \subsection{Polarization by scattering model in pixel frame}
 \label{subsec:pscattering}
-As presented Fig.~\ref{fig:pixelframe}, an image is considered as a collection
-of pixels, and each pixel measures the polarization parameters of the light
-travelling along a ray associated with that pixel. The pixel frame
+As presented Fig.\,\ref{fig:pixelframe}, an image is considered as a collection
+of pixels and each pixel measures the polarization parameters of the light
+traveling along a ray associated with that pixel. The pixel frame
 $\mathcal{P}$ is defined accordingly with the ray which coincides with
 $\vec{c}$. The camera calibration determines the relationship between pixels
 and these 3D rays.
@@ -90,17 +90,17 @@ and these 3D rays.
 \begin{figure}
   \centering
   \includegraphics[scale=0.8]{./content/intro/figures/pixelframe.pdf}
-  \caption{Rotation between the camera frame $\mathcal{C}$ and one pixel frame $\mathcal{P}$. The light ray associated to the pixels are represented in dark orange. The pixel that corresponds to the center of the image has obiously the same frame as the camera.}
+  \caption{Rotation between the camera frame $\mathcal{C}$ and one pixel of the frame $\mathcal{P}$. The light ray associated to the pixels are represented in dark orange. The pixel that corresponds to the center of the image has obiously the same frame as the camera.}
     \label{fig:pixelframe}
 \end{figure}
 
-Let's consider one pixel of the image with its associated pixel frame $\mathcal{P}$ ($\widehat{obc}$).
-Based on Rayleigh scattering the electric field of incident light after
-scattering is perpendicular to the scattering plane, that is defined by the
-observer, celestial point and the sun.
-Accordingly the normalized electric field vector $\vec{E}$ in the world frame
+Let consider one pixel of the image with its associated pixel frame $\mathcal{P}$ ($\widehat{obc}$).
+Based on Rayleigh scattering, the electric field of incident light after
+scattering is perpendicular to the scattering plane that is defined by the
+observer, celestial point, and the sun.
+Accordingly, the normalized electric field vector $\vec{E}$ in the world frame
 is presented as the normalized cross product of $\vec{s}$ and
-$\vec{c}$ (see Eq.~\ref{Eq:E}).
+$\vec{c}$ as shown in Eq.\,\eqref{Eq:E}.
 
 \begin{equation}
 \vec{E}=\frac{\vec{s}\wedge \vec{c}}{\left\Vert \vec{s}\wedge
@@ -108,16 +108,16 @@ $\vec{c}$ (see Eq.~\ref{Eq:E}).
 \label{Eq:E}
 \end{equation}
 
-The same measure in the pixel frame $\mathcal{P}$  is represented as:
+The same measure in the pixel frame $\mathcal{P}$ is represented as:
 % However measuring the skylight polarization pattern and \gls{aop}, the electric
 % field in the pixel frame $\mathcal{P}$ ($\widehat{obc}$) is represented as:
 
 \begin{equation}
-E_{obc}=\left[\begin{array}{l}
+E_{obc}=\left[\begin{array}{c}
 E_{o}\\
 E_{b}\\
 0
-\end{array}\right]=\left[\begin{array}{l}
+\end{array}\right]=\left[\begin{array}{c}
 \cos\alpha\\
 \sin\alpha\\
 0
@@ -125,7 +125,7 @@ E_{b}\\
 \label{Eq:Eproj}
 \end{equation}
 \noindent where $\alpha$ is the measured \gls{aop} associated to the corresponding pixel.
-Combination of Eq.~\ref{Eq:E}~\&~\ref{Eq:Eproj} and using the
+Combination of Eq.\,\eqref{Eq:E}~\&~\eqref{Eq:Eproj} and using the
 scattering angle $\gamma$, between $\vec{s}$ and $\vec{c}$ leads to:
 \begin{equation}
   \begin{cases}
@@ -135,7 +135,7 @@ scattering angle $\gamma$, between $\vec{s}$ and $\vec{c}$ leads to:
 \label{eq:E0EB vect-1-1}
 \end{equation}
 
-\noindent applying vector triplet cross product rule on Eq.~\ref{eq:E0EB
+\noindent applying vector triplet cross product rule on Eq.\,\eqref{eq:E0EB
   vect-1-1} results.
 \begin{equation}
 \begin{cases}
@@ -144,7 +144,7 @@ s\cdot o & =-\sin\gamma\sin\alpha
 \end{cases}
 \label{eq:scal-b-o}
 \end{equation}
-Using Eq.~\ref{eq:3}, the scattering angle $\gamma$, therefore can be
+Using Eq.\,\eqref{eq:3}, the scattering angle $\gamma$, therefore can be
 represented as:
 \begin{equation}
 \cos\gamma=s\cdot c=\pm\sqrt{\frac{1-\rho_{l}'}{1+\rho_{l}'}}
@@ -195,7 +195,7 @@ expressed in the world frame, $v_{w}$:
 \noindent where the rotation from the camera to the pixel frame $R_{cp}$ is
 obtained by camera calibration. The rotation is
 defined as the yaw and pitch rotation by the zenith and azimuth angle of the
-celestial point ($\theta_c, \phi_c$) as shown in Eq.~\ref{eq:Rcp}.
+celestial point ($\theta_c, \phi_c$) as shown in Eq.\,\eqref{eq:Rcp}.
 \begin{equation}
   \label{eq:Rcp}
   \begin{split}
@@ -211,7 +211,7 @@ celestial point ($\theta_c, \phi_c$) as shown in Eq.~\ref{eq:Rcp}.
 \end{equation}
 
 Previously we presented how to express sun position in pixel frame (see
-Eq.~\ref{eq:sunp}). Indeed this representation is applied to any point from
+Eq.\,\eqref{eq:sunp}). Indeed this representation is applied to any point from
 world frame, ergo:
 \begin{equation}
   \label{eq:Rwv}
