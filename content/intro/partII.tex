@@ -30,46 +30,25 @@ sunlight.  Despite its simplification and assumption, this model proved to be
 sufficient for describing skylight scattering and polarization
 patterns~\cite{pomozi2001clearsky, horvath2002ground}.
 
-The Rayleigh scattering model predicts that the unpolarized sunlight becomes
-linearly polarized passing through the atmosphere.
-Equation~\ref{eq:1} shows the stokes parameters for natural light after and
-before passing through the atmosphere, since the last stokes parameter is $0$
-after scattering, the light is considered to be linearly polarized.
-\begin{equation}
-  \label{eq:1}
-  s_{unp} =
-  \begin{bmatrix}
-    1\\0\\0\\0
-  \end{bmatrix}
-  \xrightarrow[]{\text{scattering}}
-  s_{p}=
-  \begin{bmatrix}
-   s_0 \\ s_1 \\ s_2 \\ 0
- \end{bmatrix}
-\end{equation}
+The Rayleigh model predicts that the unpolarized sunlight becomes
+linearly polarized after being scattered by the atmosphere. On the one hand, the Degree of linear
+Polarization is directly linked to the scattering angle ($\gamma$) according to:
 
-Having polarization state of light, the \gls{dopl} ($\rho_{l}$) can be
-calculated as presented in Eq.~\ref{eq:stokes2}. This measure is related to the
-scattering angle ($\gamma$) which is angular distance between the observed
-celestial point and the sun (see Eq.~\ref{eq:2}).
-
-\begin{equation}
-  \label{eq:2}
-  \rho_{l} = \frac{\sin^{2}(\gamma)}{\cos^{
-      2}(\gamma)+1}
-\end{equation}
-
-According to Rayleigh model, the \gls{dopl}, varies
-from 0 to $\approx 1$ depending on the scattering angle, $\gamma$, ($\rho_{l} =
-0$ while $\gamma = 0, \pi$ and $\rho_{l} \approx 1$ while $\gamma =
-\pi/2$)~\cite{smith2007polarization, miyazaki09sunlightpolarization}.
-Accounting for the approximation and polarization defect, Eq.~\ref{eq:2}
-is presented as~\cite{pomozi2001clearsky}:
 \begin{equation}
   \label{eq:3}
   \rho_{l} = \rho_{l_{max}}\frac{1 - \cos^{2}(\gamma)}{1 + \cos^{
       2}(\gamma)}
 \end{equation}
+
+where $\rho_{l_{max}}$ is a constant that should be equal to 1 in theory but in practice
+the constant is slightly less than 1 due to some atmospheric disturbances\cite{pomozi2001clearsky}.
+The scattering angle $\gamma$ is defined by the angle between the observed celestial vector $\vec{c}$ and the sun 
+vector $\vec{s}$ as presented Fig.~\ref{fig:scattering}. It can be noticed that
+the Degree of Polarization is 0 in the sun direction and maximum when the scattering angle is $\pi/2$.
+\cite{smith2007polarization, miyazaki09sunlightpolarization}.
+
+On the other hand, the scattered light is said polarized orthogonally to the scattering plane.
+Consequently, the Angle of Polarization is directly related to the orientation of the scattering plane.
 
 
 \subsection{Polarization by scattering model for sky pattern}
