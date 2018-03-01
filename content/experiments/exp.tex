@@ -11,7 +11,7 @@ solutions.
 % \label{sec:setup}
 
 The setup used in our experiment is based on fig.~\ref{fig:rotation}.
-However instead of \gls{uav}, a camera tripod was used (see
+However instead of using a \gls{uav}, a camera was manually moved (see
 Fig.~\ref{fig:setup}).
 
 \begin{figure}
@@ -21,14 +21,13 @@ Fig.~\ref{fig:setup}).
 \label{fig:setup}
 \end{figure}
 
-For the presented experiments, we considered that $R_{vi}$ between \gls{imu} and
-\gls{uav}, as well as initial pose of the \gls{uav} in the world frame were
-identity.  To be able to using the \gls{imu} recordings as \gls{gt}, this device was
-calibrated with the camera using kalibr toolbox~\cite{furgale2013unified,
+For the presented experiments, we considered that $R_{vi}$ between \gls{imu}
+and \gls{uav}, as well as initial pose of the \gls{uav} in the world frame were
+identity.  To be able to use the \gls{imu} recordings as \gls{gt}, this device
+was calibrated with the camera using kalibr toolbox~\cite{furgale2013unified,
   furgale2012continuous}. The polarimetric camera with fisheye lens was also
-calibrated according to~\cite{kannala2006generic}.
-Using the explained setup a dataset of synthetic images was
-created.
+calibrated according to~\cite{kannala2006generic}.  Using the explained setup a
+dataset of synthetic images was created.
 % Using the explained setup two dataset of synthetic and real images were
 % created. The results obtained using these two dataset are presented in
 % Exp.~\ref{exp1} and Exp.~\ref{exp2}, respectively.
@@ -102,11 +101,11 @@ performance decline, simply due to the noise.
 %   \label{fig:res-noisy-syn-abs-rel}
 % \end{figure}
 
-To solve this problem, we defined two ransac models for the absolute and
+To solve this problem, two ransac models are defined for the absolute and
 relative rotation, respectively.  In the proposed ransac model for absolute
-rotation, since the sun position is known the ransac model optimizes the full
-rotation of each frame in comparison to the origin considering the difference
-between the predicted and real sun positions.
+rotation, since the sun position is assumed to be known the ransac model
+optimizes the full rotation of each frame in comparison to the origin
+considering the difference between the predicted and real sun positions.
 
 The relative model, however, there is no information about the original
 position, or sun position, and the algorithm only depends on the polarized
