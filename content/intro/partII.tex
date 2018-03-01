@@ -69,6 +69,14 @@ parameters of the light travelling along a ray associated with that pixel. The p
 accordingly with the ray which coincides with $\vec{c}$. The camera calibration determines the relationship between 
 pixels and these 3D rays.
 
+\begin{figure}
+  \centering
+  \includegraphics[width=0.47\textwidth]{./content/intro/figures/pixelframe.pdf}
+  \caption{Rotation between the camera frame $\mathcal{C}$ and one pixel frame $\mathcal{P}$. The light ray associated to the pixels are represented in dark orange. The pixel that corresponds to the center of the image has obiously the same frame as the camera.}
+    \label{fig:pixelframe}
+\end{figure}
+
+
 Let's consider one pixel of the image with its associated pixel frame $\mathcal{P}$ ($\widehat{obc}$).
 Based on Rayleigh scattering the electric field of incident light after
 scattering is perpendicular to the scattering plane, that is defined by the
@@ -145,10 +153,9 @@ In another word, the sun vector is expressed in the pixel frame as a vector depe
 
 \subsection{UAV attitude and polarized sky pattern}
 \label{subsec:ps-attitude}
-This section presents how the information so far presented can be used for
-attitude estimation of an \gls{uav}.
-The overview of the considered scenario, the frame conventions and rotations
-for an \gls{uav} is shown in Fig.~\ref{fig:rotation}.
+To derive equations applicable in attitude estimation process, all rotations matrices that describe the frame change
+must be taken into considerations. The overview of the considered scenario, the frame conventions and rotations
+for an \gls{uav} is shown in Fig.~\ref{fig:rotation}. The \gls{imu} frame was added for comparisons purposes. 
 
 \begin{figure}[h]
   \centering
@@ -170,6 +177,7 @@ expressed in the world frame, $v_{w}$:
   v_{w} = R_{wv} \cdot R_{vc} \cdot R_{cp} \cdot v_{p}
 \end{equation}
 \noindent where the rotation from the camera to the pixel frame $R_{cp}$ is
+obtained by camera calibration. The rotation is
 defined as the yaw and pitch rotation by the zenith and azimuth angle of the
 celestial point ($\theta_c, \phi_c$) as shown in Eq.~\ref{eq:Rcp}.
 \begin{equation}
@@ -202,14 +210,11 @@ world frame, ergo:
   \end{split}
 \end{equation}
 
-In the above equation, $\alpha$, $R_{cp}$, and $R_{vc}$ are known, however to
-find the $R_{wv}$, $\gamma$ should be estimated. How to estimate this parameter
-and definition of absolute and relative attitude estimation is explained in
-next Sect.~\ref{sec:g-abs-rel}.
-
-
-
-
+The above equation shows a direct relationship between the rotation matrix of the vehicle $R$, 
+the angle of polarization (that can be measured by the polarimetric camera at one pixel) and the 
+angle of scattering $\gamma$ for the corresponding pixel. In addition, if $\rho_{lmax}$ is known,
+the angle of scattering could be directly obtained by inverting equation~xx providing a direct relation
+between polarization parameters and the rotation of the vehicle.
 
 % Some stuff that emac's colegues use
 %%% Local Variables:
