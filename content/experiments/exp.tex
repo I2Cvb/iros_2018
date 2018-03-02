@@ -8,6 +8,46 @@
 \label{fig:setup}
 \end{figure}
 
+\begin{figure*}
+  \centering
+  \subfigure[\gls{aop}]{\label{fig:aop-syn}\includegraphics[width= 0.22\textwidth, height=0.12
+    \textheight]{./content/experiments/figures/aop-no-noise.jpg}}\hfill
+  \subfigure[\gls{dopl}]{\label{fig:dop-syn}\includegraphics[width=0.22\textwidth, height=0.12
+    \textheight]{./content/experiments/figures/dop-no-noise.jpg}}
+  \hspace*{\fill}
+  \subfigure[\gls{aop}]{\label{fig:aop-noisy-syn}\includegraphics[width=0.22\textwidth,
+    height=0.12\textheight]{./content/experiments/figures/aop-noise-01-2.jpg}
+    }\hfill
+  \subfigure[\gls{dopl}]{\label{fig:dop-noisy-syn}\includegraphics[width=0.22\textwidth,
+    height=0.12\textheight]{./content/experiments/figures/dop-noise-01-2.jpg}
+    }
+  \hspace*{\fill}
+  \caption{\gls{aop} and \gls{dopl} images synthetically created. All images
+    have been generated with sky region for yaw, pitch and roll angle of
+    \SI{1.8}{\radian}, \SI{-0.2}{\radian} and \SI{0.1}{\radian},
+    respectively. (a)-(b) No noise added, (c)-(d) Noise level of 0.1 added.}
+  \label{fig:aop-dop-syn}
+\end{figure*}
+
+\begin{figure*}
+  \centering
+  \includegraphics[width=1\textwidth]{./content/experiments/figures/syn-res.jpeg}
+  \caption{Absolute and relative rotation obtained from synthetic data in ideal
+  case, noisy conditions without RANSAC optimization and noisy case with RANSAC
+optimization. The mean and standard deviation of the difference between each
+predicted and \gls{gt} is illustrated in the legend as well.}
+  \label{fig:res-syn}
+\end{figure*}
+
+\begin{figure}
+  \centering
+  \includegraphics[width=0.49\textwidth]{./content/experiments/figures/real-res.jpeg}
+  \caption{Absolute and relative rotation obtained from real data. The black
+    line represents the \gls{gt}, the orange line and the blue line represent
+    the absolute and relative predicted rotations, respectively.}
+  \label{fig:res-real}
+\end{figure}
+
 
 \section{Experiments and Results}
 \label{sec:exp-res}
@@ -32,41 +72,12 @@ at optimal conditions. This dataset based on \gls{imu} recordings contains
 rotations along roll, pitch, and yaw. This dataset has originally 856 samples
 but has been down-sampled by sampling rate of 30 samples.
 
-\begin{figure*}
-  \centering
-  \subfigure[\gls{aop}]{\label{fig:aop-syn}\includegraphics[width= 0.22\textwidth, height=0.12
-    \textheight]{./content/experiments/figures/aop-no-noise.jpg}}\hfill
-  \subfigure[\gls{dopl}]{\label{fig:dop-syn}\includegraphics[width=0.22\textwidth, height=0.12
-    \textheight]{./content/experiments/figures/dop-no-noise.jpg}}
-  \hspace*{\fill}
-  \subfigure[\gls{aop}]{\label{fig:aop-noise-syn}\includegraphics[width=0.22\textwidth,
-    height=0.12\textheight]{./content/experiments/figures/aop-noise-01-2.jpg}
-    }\hfill
-  \subfigure[\gls{dopl}]{\label{fig:dop-noise-syn}\includegraphics[width=0.22\textwidth,
-    height=0.12\textheight]{./content/experiments/figures/dop-noise-01-2.jpg}
-    }
-  \hspace*{\fill}
-  \caption{\gls{aop} and \gls{dopl} images synthetically created. All images
-    have been generated with sky region for yaw, pitch and roll angle of
-    \SI{1.8}{\radian}, \SI{-0.2}{\radian} and \SI{0.1}{\radian},
-    respectively. (a)-(b) No noise added, (c)-(d) Noise level of 0.1 added.}
-  \label{fig:aop-dop-syn}
-\end{figure*}
 
 Applying our framework on ideal synthetic data, perfect results were obtained
 for absolute and relative rotations, while $\gamma$ was estimated using only 2
 random points from the sky region (blue dotted curve in
 Fig.\,\ref{fig:res-syn}).
 
-\begin{figure*}
-  \centering
-  \includegraphics[width=1\textwidth]{./content/experiments/figures/syn-res.jpeg}
-  \caption{Absolute and relative rotation obtained from synthetic data in ideal
-  case, noisy conditions without RANSAC optimization and noisy case with RANSAC
-optimization. The mean and standard deviation of the difference between each
-predicted and \gls{gt} is illustrated in the legend as well.}
-  \label{fig:res-syn}
-\end{figure*}
 
 % \begin{figure}
 %   \includegraphics[width=0.47\textwidth]{./content/experiments/figures/ideal-syn-abs-rel-2.jpg}
@@ -82,7 +93,7 @@ on ideal synthetic data, in reality it is rare to obtain the perfect skylight
 polarization pattern. Variety of causes clutter the desired skylight pattern,
 the main one being pollution. To account for such cases, a second test was
 performed while significant level of noise was added to the created synthetic
-data. Figures~\ref{fig:aop-syn-noisy}~\&~\ref{fig:dop-noise-syn} show an
+data. Figures~\ref{fig:aop-noisy-syn}~\&~\ref{fig:dop-noisy-syn} show an
 example of synthetic data with an additional Gaussian noise with an
 standard-deviation of $0.1$.
 
@@ -121,7 +132,7 @@ predicted and real sun positions.
 
 However, in the relative rotation method there is no information about the
 original position, or sun position, and the algorithm only depends on the
-polarized vector, $v = R_{cp}*v_p$ between two different frames. Therefore,
+polarized vector, $v = R_{cp} . v_p$ between two different frames. Therefore,
 using the model infers the optimal vector representing each frame is
 obtained.
 
@@ -148,7 +159,8 @@ line). The parameters used were: an error threshold of 0.07, 10 random points
 
 The quantitative results in terms of mean difference ($\mu$) and standard
 deviation ($\sigma$) between the predicted rotations and \gls{gt}, for all the
-conditions are also shown in the Fig.\,\ref{fig:res-syn}.
+conditions are also shown in the Fig.\,\ref{fig:res-syn}. Note that all the
+angles are reported in radians.
 
 %$tabulated in Table.~\ref{tab:tab1}.
 
@@ -177,20 +189,12 @@ model the outliers are ignored and satisfactory results are achieved.
 \subsection{Experiment~2}
 \label{sec:exp2}
 This section presents the results obtained using real data. The same
-experimental setup was used using the \gls{imu} results to create the \gls{gt}
-for the vehicle in the world frame.  The original data set contains 593
-recordings which was under-sampled to a sampling rate of 20 frames.  Both
-absolute and relative methods were ran with \gls{ransac} with the same
-parameters than in the previous experiment. The results are presented in
+experimental setup was used using the \gls{imu} results to create
+the \gls{gt} for the vehicle in the world frame.  The original data set
+contains 593 recordings which was under-sampled to a sampling rate of 20
+frames.  Both absolute and relative methods were ran with \gls{ransac} with the
+same parameters than in the previous experiment. The results are presented in
 Fig.\,\ref{fig:res-real}.
-\begin{figure}
-  \centering
-  \includegraphics[width=0.49\textwidth]{./content/experiments/figures/real-res.jpeg}
-  \caption{Absolute and relative rotation obtained from real data. The black
-    line represents the \gls{gt}, the orange line and the blue line represent
-    the absolute and relative predicted rotations, respectively.}
-  \label{fig:res-real}
-\end{figure}
 
 Even though the difference between the predicted rotation and \gls{gt} using
 the real data is higher than for the synthetic measurements the results are
