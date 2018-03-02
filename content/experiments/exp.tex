@@ -176,13 +176,13 @@ model the outliers are ignored and satisfactory results are achieved.
 
 \subsection{Experiment~2}
 \label{sec:exp2}
-This section presents the results obtained using real data. Same as previous
-experiment the \gls{imu} results were used to create the \gls{gt} for vehicle
-pose in the world frame.
-The original data set contains 593 recordings. However for simplicity it was
-down sampled with sampling rate of 20 frames.
-Running \gls{ransac} optimization with the same criteria as previous experiment the
-following results are obtained (see Fig.\,\ref{fig:res-real}).
+This section presents the results obtained using real data. The same
+experimental setup was used using the \gls{imu} results to create the \gls{gt}
+for the vehicle in the world frame.  The original data set contains 593
+recordings which was under-sampled to a sampling rate of 20 frames.  Both
+absolute and relative methods were ran with \gls{ransac} with the same
+parameters than in the previous experiment. The results are presented in
+Fig.\,\ref{fig:res-real}.
 \begin{figure}
   \centering
   \includegraphics[width=0.49\textwidth]{./content/experiments/figures/real-res.jpeg}
@@ -192,8 +192,8 @@ following results are obtained (see Fig.\,\ref{fig:res-real}).
   \label{fig:res-real}
 \end{figure}
 
-Even though the difference between the predicted rotation and \gls{gt} using the
-real data is higher than the synthetic measurements the results are
+Even though the difference between the predicted rotation and \gls{gt} using
+the real data is higher than for the synthetic measurements the results are
 promising and the pose trajectory of the vehicle is respected.
 
 
