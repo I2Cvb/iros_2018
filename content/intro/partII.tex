@@ -174,7 +174,7 @@ is directly linked to the scattering angle~$\gamma$.
 \label{subsec:ps-attitude}
 
 Figure~\ref{fig:rotation} illustrates all transformations and frame conventions
-to consider to estimate the attitude of a \gls{uav}. In addition, an \gls{imu}
+to estimate the attitude of a \gls{uav}. In addition, an \gls{imu}
 frame is added for later comparisons.
 
 % To derive equations applicable in attitude estimation process, all rotation
@@ -196,10 +196,10 @@ frame of \gls{imu}, \gls{imu} frame, vehicle frame, camera frame, and pixel
 frame, respectively. The rotation from one frame to another is presented
 with lowercase alphabet.
 In this scenario, a vector $v_{p}$ in pixel frame is expressed in the world
-frame $v_{w}$ as: 
+frame $v_{w}$ as:
 \begin{equation}
   \label{eq:vinW}
-  v_{w} = R_{wv} \cdot R_{vc} \cdot R_{cp} \cdot v_{p} \ , 
+  v_{w} = R_{wv} \cdot R_{vc} \cdot R_{cp} \cdot v_{p} \ ,
 \end{equation}
 \noindent where the rotation from the camera to the pixel frame $R_{cp}$ is
 obtained by camera calibration. The rotation is

@@ -46,19 +46,29 @@ optimal conditions.
 
 Applying our framework on ideal synthetic data, perfect results were obtained
 for absolute and relative rotations, while $\gamma$ was estimated using only
-two random points from sky region (see Fig.~\ref{fig:res-syn-ideal-abs-rel}).
+two random points from sky region (blue dot curve in Fig.~\ref{fig:res-syn}).
 The synthetic dataset created based on \gls{imu} recordings, has rotation of
 roll, pitch and yaw, respectively. This dataset has 856 samples, however for
 simplicity, it has being down sampled by sampling rate of 30 samples.
 
-\begin{figure}
-  \includegraphics[width=0.47\textwidth]{./content/experiments/figures/ideal-syn-abs-rel-2.jpg}
-  \caption{Absolute and relative rotation obtained from synthetic data in
-    optimal conditions. The black line represents the \gls{gt}, the
-    \textcolor{red}{dots} and the \textcolor{green}{stars} represent the
-    absolute and relative predicted rotations, respectively.}
-  \label{fig:res-syn-ideal-abs-rel}
-\end{figure}
+\begin{figure*}
+  \centering
+  \includegraphics[width=1\textwidth]{./content/experiments/figures/syn-res.jpeg}
+  \caption{Absolute and relative rotation obtained from synthetic data in ideal
+  case, noisy conditions without ransac optimization and noisy case with ransac
+optimization. The mean and standard deviation of the difference between each
+predicted and \gls{gt} is illustrated in the legend as well.}
+  \label{fig:res-syn}
+\end{figure*}
+
+% \begin{figure}
+%   \includegraphics[width=0.47\textwidth]{./content/experiments/figures/ideal-syn-abs-rel-2.jpg}
+%   \caption{Absolute and relative rotation obtained from synthetic data in
+%     optimal conditions. The black line represents the \gls{gt}, the
+%     \textcolor{red}{dots} and the \textcolor{green}{stars} represent the
+%     absolute and relative predicted rotations, respectively.}
+%   \label{fig:res-syn-ideal-abs-rel}
+% \end{figure}
 
 Although using our proposed framework we were able to achieve perfect results
 on ideal synthetic data, in reality it is rare to obtain the perfect skylight
@@ -84,7 +94,7 @@ $\%10$ noise.
 \end{figure}
 
 Performing the same 2-random-point algorithm as before on noisy dataset leads
-to the results illustrated in Fig.~\ref{fig:res-noisy-syn-abs-rel}. As expected the
+to the results illustrated in Fig.~\ref{fig:res-syn}, the orange curve. As expected the
 performance decline, simply due to the noise.
 % \begin{figure}
 %   \includegraphics[width=0.5\textwidth]{./content/experiments/figures/noisy-syn-abs-rel-2.jpg}
@@ -108,46 +118,48 @@ model, the optimal vector representing each frame is obtained.
 
 Running our ransac models on the noisy datasets, with error threshold of 0.07,
 10 random points (2 points for defining the model and the rest as test), and
-2000 iterations the following results are obtained:
-\begin{figure*}
-  \centering
-  \subfigure[The theoretical method without ransac optimization]{
-    \includegraphics[width=0.47\textwidth]{./content/experiments/figures/noisy-syn-abs-rel-2.jpg}
-  \label{fig:res-noisy-syn-abs-rel}}\hfill
-  \subfigure[The theoretical method with ransac optimization]{
-    \includegraphics[width=0.47\textwidth]{./content/experiments/figures/noisy-ransac-abs-rel-3.jpg}
-    \label{fig:res-noisy-syn-ransac-abs-rel}}
-  \hspace*{\fill}
-  \caption{Absolute and relative rotation obtained from  noisy synthetic data
-    without and with ransac optimization. The black line represents the \gls{gt}, the
-    \textcolor{red}{dots} and the \textcolor{green}{stars} represent the
-    absolute and relative predicted rotations, respectively.}
-  \label{fig:noisy-data}
-\end{figure*}
+2000 iterations leads to the green dot curve on Fig.~\ref{fig:res-syn}.
+%the following results are obtained:
+% \begin{figure*}
+%   \centering
+%   \subfigure[The theoretical method without ransac optimization]{
+%     \includegraphics[width=0.47\textwidth]{./content/experiments/figures/noisy-syn-abs-rel-2.jpg}
+%   \label{fig:res-noisy-syn-abs-rel}}\hfill
+%   \subfigure[The theoretical method with ransac optimization]{
+%     \includegraphics[width=0.47\textwidth]{./content/experiments/figures/noisy-ransac-abs-rel-3.jpg}
+%     \label{fig:res-noisy-syn-ransac-abs-rel}}
+%   \hspace*{\fill}
+%   \caption{Absolute and relative rotation obtained from  noisy synthetic data
+%     without and with ransac optimization. The black line represents the \gls{gt}, the
+%     \textcolor{red}{dots} and the \textcolor{green}{stars} represent the
+%     absolute and relative predicted rotations, respectively.}
+%   \label{fig:noisy-data}
+% \end{figure*}
 
 The quantitative results in terms of mean difference ($\mu$) and standard
-deviation ($\sigma$)
-between the predicted rotations and \gls{gt} are tabulated in
-Table.~\ref{tab:tab1}.
+deviation ($\sigma$) between the predicted rotations and \gls{gt}, for all the
+conditions are also shown in the Fig.~\ref{fig:res-syn}.
 
-\begin{table}
-  \centering
-  \caption{Mean difference and standard deviation comparison between predicted
-    results and \gls{gt} in radian.}
-  \begin{tabular}{l cc cc cc}
-    \toprule
-    & \multicolumn{2}{c}{Yaw} & \multicolumn{2}{c}{Pitch} &
-                                                            \multicolumn{2}{c}{Roll}\\
-    \midrule
-    & $\mu$ & $\pm \sigma$ &  $\mu$ & $\pm \sigma$ &  $\mu$ & $\pm \sigma$\\
-    \cmidrule{2-3} \cmidrule{4-5} \cmidrule{6-7}
+%$tabulated in Table.~\ref{tab:tab1}.
 
-    Absolute & 0.087 & 0.078 & 0.020 & 0.029 & 0.068 & 0.100 \\
-    Relative & 0.275 & 0.35 & 0.113 & 0.123 & 0.148 & 0.111\\
-    \bottomrule
-  \end{tabular}
-  \label{tab:tab1}
-\end{table}
+% \begin{table}
+%   \centering
+%   \caption{Mean difference and standard deviation comparison between predicted
+%     results and \gls{gt} in radian.}
+%   \begin{tabular}{l cc cc cc}
+%     \toprule
+%     & \multicolumn{2}{c}{Yaw} & \multicolumn{2}{c}{Pitch} &
+%                                                             \multicolumn{2}{c}{Roll}\\
+%     \midrule
+%     & $\mu$ & $\pm \sigma$ &  $\mu$ & $\pm \sigma$ &  $\mu$ & $\pm \sigma$\\
+%     \cmidrule{2-3} \cmidrule{4-5} \cmidrule{6-7}
+
+%     Absolute & 0.087 & 0.078 & 0.020 & 0.029 & 0.068 & 0.100 \\
+%     Relative & 0.275 & 0.35 & 0.113 & 0.123 & 0.148 & 0.111\\
+%     \bottomrule
+%   \end{tabular}
+%   \label{tab:tab1}
+% \end{table}
 
 As illustrated in the obtained results, using the ransac
 model the outliers are ignored and satisfactory results are achieved.
@@ -160,36 +172,39 @@ pose in the world frame.
 The original data set contains 593 recordings. However for simplicity it was
 down sampled with sampling rate of 20 frames.
 Running ransac optimization with the same criteria as previous experiment the
-following results are obtained (see Fig.~\ref{fig:res-real-ransac-abs-rel} $\&$
-Table.~\ref{tab:tab2}).
+following results are obtained (see Fig.~\ref{fig:res-real}).
 \begin{figure}
-  \includegraphics[width=0.47\textwidth]{./content/experiments/figures/real-ransac-abs-rel-2.jpg}
+  \centering
+  \includegraphics[width=0.49\textwidth]{./content/experiments/figures/real-res.jpeg}
   \caption{Absolute and relative rotation obtained from real data. The black
-    line represents the \gls{gt}, the \textcolor{red}{dots} and the
-    \textcolor{green}{stars} represent the absolute and relative predicted
-    rotations, respectively.}
-  \label{fig:res-real-ransac-abs-rel}
+    line represents the \gls{gt}, the orange line and the blue line represent
+    the absolute and relative predicted rotations, respectively.}
+  \label{fig:res-real}
 \end{figure}
 
+Even though the difference between the predicted rotation and \gls{gt} using the
+real data is higher than the synthetic measurements the results are
+promising and the pose trajectory of the vehicle is respected.
 
-\begin{table}
-  \centering
-  \caption{Mean difference and standard deviation comparison between predicted
-    results and \gls{gt} in radian on real data.}
-  \begin{tabular}{l cc cc cc}
-    \toprule
-    & \multicolumn{2}{c}{Yaw} & \multicolumn{2}{c}{Pitch} &
-                                                            \multicolumn{2}{c}{Roll}\\
-    \midrule
-    & $\mu$ & $\pm \sigma$ &  $\mu$ & $\pm \sigma$ &  $\mu$ & $\pm \sigma$\\
-    \cmidrule{2-3} \cmidrule{4-5} \cmidrule{6-7}
 
-    Absolute & 0.23 & 0.22 & 0.27 & 0.18 & 0.15 & 0.19 \\
-    Relative & 0.26 & 0.31 & 0.12 & 0.10 & 0.25 & 0.22\\
-    \bottomrule
-  \end{tabular}
-  \label{tab:tab2}
-\end{table}
+% \begin{table}
+%   \centering
+%   \caption{Mean difference and standard deviation comparison between predicted
+%     results and \gls{gt} in radian on real data.}
+%   \begin{tabular}{l cc cc cc}
+%     \toprule
+%     & \multicolumn{2}{c}{Yaw} & \multicolumn{2}{c}{Pitch} &
+%                                                             \multicolumn{2}{c}{Roll}\\
+%     \midrule
+%     & $\mu$ & $\pm \sigma$ &  $\mu$ & $\pm \sigma$ &  $\mu$ & $\pm \sigma$\\
+%     \cmidrule{2-3} \cmidrule{4-5} \cmidrule{6-7}
+
+%     Absolute & 0.23 & 0.22 & 0.27 & 0.18 & 0.15 & 0.19 \\
+%     Relative & 0.26 & 0.31 & 0.12 & 0.10 & 0.25 & 0.22\\
+%     \bottomrule
+%   \end{tabular}
+%   \label{tab:tab2}
+% \end{table}
 
 
 
