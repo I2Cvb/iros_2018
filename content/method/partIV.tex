@@ -122,20 +122,17 @@ The aforementioned assumptions lead to the following expression:
 \noindent where $z$ is the vertical in world frame ($[0, 0, 1]$) and $t$ is the
 time instance.
 
-Solving Eq.\,\eqref{eq:linear_equation} enables to get $R_{wv}(t)$. However due to
-$\gamma$ ambiguities, there exist two solutions for $v$ and therefore for
-$R_{wv}$.
-To constraint the solutions, at each time stamp, a closest solution compare to
-the previous time stamp is selected.
-
-
+Solving Eq.\,\eqref{eq:linear_equation} enables to get $R_{wv}(t)$. However, due to
+$\gamma$ ambiguities, $v$ and therefore $R_{wv}$ have 2 solutions. At each
+iteration, the rotation $R_{wv}$ selected is the one the closest from previous
+rotation, assuming that the motion between two frames is smoothed.
 
 \subsection{Relative rotation}
 \label{sec:rel-rot}
 
-The relative rotation is estimated between two different time stamps ($t_1$,
-$t_2$), Therefore Eq.\,\eqref{eq:linear_equation} becomes (For simplicity in the
-rest, $v(t_1)$ and $v(t_2)$ are referred as $v_1$ and $v_2$.):
+The relative rotation is estimated between two time stamps ($t_1$,
+$t_2$). Let $v(t_1)$ and $v(t_2)$ referring to $v_1$ and $v_2$ to simplify the
+expression. Therefore, Eq.\,\eqref{eq:linear_equation} becomes:
 
 \begin{equation}
 \begin{cases}
@@ -144,7 +141,7 @@ rest, $v(t_1)$ and $v(t_2)$ are referred as $v_1$ and $v_2$.):
 \end{cases}.
 \label{eq:rel-linear_equation}
 \end{equation}
-\noindent which leads to:
+Leading to:
 \begin{equation}
   \begin{split}
 R_{wv2}=R_{wv1}\cdot R_{vc}\cdot\left[v_{1},w_{1},v_{1}\wedge
@@ -165,15 +162,9 @@ R_{vc}^{t}
 \label{eq:final-relative}
 \end{equation}
 
-
-The basic theory of attitude estimation based on polarization by scattering was explained in this
-section emphasizing that in both approaches, only two points from the pattern of the sky are required
-to solve the scattering angle $\gamma$. As described in the following section, an algorithm to robustify 
-the results is implementing by considering more points.
-
-
-
-
+As previously explained, only 2 points are required to compute the scattering
+angle $\gamma$. In practice (see Sect.\,\ref{sec:exp-res}), more points can be
+used which leading to a more robust estimate of the vehicle rotation.
 
 %%% Local Variables:
 %%% mode: latex
