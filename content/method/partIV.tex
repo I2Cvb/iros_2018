@@ -3,24 +3,29 @@
 
 \section{Attitude estimation}
 \label{sec:g-abs-rel}
-In this section, a method is first proposed to estimate the scattering
-angle~$\gamma$ without any assumption regarding the constant $\rho_{lmax}$ which
-can not be estimated in general.  Then two approaches are considered. The first
-one, called absolute rotation, makes the asumption that the sun position is
-knwon or can be deduced from time and the GPS location of the vehicle. The
-second called relative rotation enables to estimate the relative rotation of
-the vehicle from the intial position of the vehicle without any additional
-assumption regarding the sun position.
 
+In this section, we present 2 approaches to estimate the attitude: (i) in the
+former method named \emph{absolute rotation}, the absolute rotation and
+attitude of the vehicle is estimated under the assumption that the sun position
+is known or deduced from time and the GPS location of the vehicle and (ii) in
+the latter method named \emph{relative rotation}, the relative rotation of the
+vehicle from its initial position is estimated without additional assumption
+regarding the sun position. Both approaches required an estimate of the
+scattering angle~$\gamma$ which will be presented beforehand.
+
+% In this section, a method is first proposed to estimate the scattering angle~$\gamma$
+% without any asumption regarding the constant $\rho_{lmax}$ which can not be estimated in general.
+% Then two approaches are considered. The first one, called absolute rotation, makes the asumption
+% that the sun position is knwon or can be deduced from time and the GPS location of the vehicle. The second
+% called relative rotation enables to estimate the relative rotation of the vehicle from the intial position of the vehicle without any additional assumption regarding the sun position.
 
 \subsection{$\gamma$ estimation}
 \label{sec:gamma}
-Considering that we are only measuring the angle of polarization $\alpha$
-in scattering effects, we have to estimate $\gamma$ to get the vector
-$v$ defined in Eq.~\ref{eq:Rwv}. This equation is valid for all the points in
-sky region. However with only two celestial points, $\gamma$ can be estimated as
-expressed in the following.
 
+By only measuring the \gls{aop}~$\alpha$ in scattering effects, $\gamma$ needs
+to be estimated to get the vector $v$ defined in Eq.\,\eqref{eq:Rwv}. This
+equation is valid for all points in sky region. However, only 2 celestial
+points are required to estimate $\gamma$ such as:
 \begin{equation}
 \begin{cases}
 R^{t}\cdot s=R_{cp_{1}}\cdot\left[\begin{array}{c}
@@ -33,9 +38,10 @@ R^{t}\cdot s=R_{cp_{2}}\cdot\left[\begin{array}{c}
 \sin\gamma_{2}\cos\alpha_{2}\\
 \cos\gamma_{2}
 \end{array}\right]
-\end{cases}\label{eq:2setseq}
+\end{cases} \ .
+\label{eq:2setseq}
 \end{equation}
-\noindent Using the product of $R_{cp}$ and $R_z(\alpha)$, Eq.~\ref{eq:2setseq}
+Using the product of $R_{cp}$ and $R_z(\alpha)$, Eq.\,\eqref{eq:2setseq}
 is rewritten as:
 % \begin{equation}
 % \begin{split}
@@ -78,57 +84,55 @@ is rewritten as:
 0\\
 \sin\gamma_{2}\\
 \cos\gamma_{2}
-\end{bmatrix}
+\end{bmatrix} \ .
 \label{eq:2pts}
 \end{equation}
-\noindent By defining the matrix $M$ such
-that $M=M_{2}^{t}\cdot M_{1}$, $\gamma_1$ and $\gamma_2$ are found as:
+By defining the matrix $M$ such that $M=M_{2}^{t}\cdot M_{1}$, $\gamma_1$ and
+$\gamma_2$ are found as:
 \begin{equation}
 \begin{cases}
 \gamma_{1}=-\arctan\frac{M_{02}}{M_{01}}\\
 \gamma_{2}=-\arctan\frac{M_{20}}{M_{10}}
-\end{cases}\label{eq:gamma-sol}
+\end{cases} \ .
+\label{eq:gamma-sol}
 \end{equation}
 
 The \gls{aop} is $2\pi$ modulus, while the $\gamma$ found in
-Eq.~\ref{eq:gamma-sol} is $\pi$ modulus, this leads to two possible solutions
-for vector $v$,
+Eq.\,\eqref{eq:gamma-sol} is $\pi$ modulus leading to two possible solutions
+for the vector $v$: 
 $\left(\alpha_{1},\gamma_{1}\right)\,\text{and}\,\left(\alpha_{1}+\pi,-\gamma_{1}\right)$.
 
 \subsection{Absolute rotation}
 \label{sec:abs-rot}
 In order to estimate the absolute rotation and attitude of the \gls{uav}, it is
-assumed that: (i) the sun position is known, (ii) using the \gls{aop} measures
-of the sky (2 points), the vector $v$ is estimated, (iii) either using the \gls{aop}
-from horizontally reflected areas (i.e. water) a second vectors $w$ is
-estimated or the vertical in the pixel frame is known.
-In this study we assumed that the vertical in the pixel frame is known, however
-having any horizontal surface, the second vector can be estimated.
+assumed that: (i) the sun position is known (ii) the vector $v$ is estimated
+using the \gls{aop} measures of the sky (2 points) and (iii) the vertical in
+the pixel frame is known or a second $w$ is estimated using the \gls{aop} from
+horizontal reflected areas. In this study, the vertical in the pixel frame is
+assumed to be known.
 
-The aforementioned assumptions leads to the following expression, where $z$ is
-the vertical in world frame ($[0, 0, 1]$) and $t$ is the time instance.
+The aforementioned assumptions lead to the following expression:
 \begin{equation}
 \begin{cases}
 \left[s,z,s\wedge z\right] & =R(t)\cdot\left[v(t),w(t),v(t)\wedge w(t)\right]\\
  & =R_{wv}(t)\cdot R_{vc}\cdot\left[v(t),w(t),v(t)\wedge w(t)\right]
-\end{cases}
+\end{cases} \ .
 \label{eq:linear_equation}
 \end{equation}
+\noindent where $z$ is the vertical in world frame ($[0, 0, 1]$) and $t$ is the
+time instance.
 
-Solving Eq.~\ref{eq:linear_equation} enables to get $R_{wv}(t)$. However due to
-$\gamma$ ambiguities, there exist two solutions for $v$ and therefore for
-$R_{wv}$.
-To constraint the solutions, at each time stamp, a closest solution compare to
-the previous time stamp is selected.
-
-
+Solving Eq.\,\eqref{eq:linear_equation} enables to get $R_{wv}(t)$. However, due to
+$\gamma$ ambiguities, $v$ and therefore $R_{wv}$ have 2 solutions. At each
+iteration, the rotation $R_{wv}$ selected is the one the closest from previous
+rotation, assuming that the motion between two frames is smoothed.
 
 \subsection{Relative rotation}
 \label{sec:rel-rot}
 
-The relative rotation is estimated between two different time stamps ($t_1$,
-$t_2$), Therefore Eq.~\ref{eq:linear_equation} becomes (For simplicity in the
-rest, $v(t_1)$ and $v(t_2)$ are referred as $v_1$ and $v_2$.):
+The relative rotation is estimated between two time stamps ($t_1$,
+$t_2$). Let $v(t_1)$ and $v(t_2)$ referring to $v_1$ and $v_2$ to simplify the
+expression. Therefore, Eq.\,\eqref{eq:linear_equation} becomes:
 
 \begin{equation}
 \begin{cases}
@@ -137,12 +141,12 @@ rest, $v(t_1)$ and $v(t_2)$ are referred as $v_1$ and $v_2$.):
 \end{cases}.
 \label{eq:rel-linear_equation}
 \end{equation}
-\noindent which leads to:
+Leading to:
 \begin{equation}
   \begin{split}
 R_{wv2}=R_{wv1}\cdot R_{vc}\cdot\left[v_{1},w_{1},v_{1}\wedge
   w_{1}\right]\cdot \\
-\left[v_{2},w_{2},v_{2}\wedge w_{2}\right]^{-1} \cdot R_{vc}^{T}.
+\left[v_{2},w_{2},v_{2}\wedge w_{2}\right]^{-1} \cdot R_{vc}^{T} \ ,
 \label{eq:relative_equation}\end{split}
 \end{equation}
 
@@ -154,19 +158,13 @@ Using the above equation, the relative rotation $R_{v_{1}v_{2}}$ is equal to:
    & R_{vc}\cdot\left[v_{1},w_{1},v_{1}\wedge
   w_{1}\right]\cdot\left[v_{2},w_{2},v_{2}\wedge w_{2}\right]^{-1}\cdot
 R_{vc}^{t}
-\end{split}
+\end{split} \ .
 \label{eq:final-relative}
 \end{equation}
 
-
-The basic theory of attitude estimation based on polarization by scattering was explained in this
-section emphasizing that in both approaches, only two points from the pattern of the sky are required
-to solve the scattering angle $\gamma$. As described in the following section, an algorithm to robustify
-the results is implemented by considering more points.
-
-
-
-
+As previously explained, only 2 points are required to compute the scattering
+angle $\gamma$. In practice (see Sect.\,\ref{sec:exp-res}), more points can be
+used which leading to a more robust estimate of the vehicle rotation.
 
 %%% Local Variables:
 %%% mode: latex
